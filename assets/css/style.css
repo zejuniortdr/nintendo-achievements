@@ -72,6 +72,100 @@ body {
 }
 
 /* ===================================
+PROFILE (PÁGINA INICIAL)
+=================================== */
+.profile-section {
+  margin-bottom: 32px;
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.profile-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 3px solid var(--color-accent);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.profile-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-info h1 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-accent);
+}
+
+.profile-tagline {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.profile-stats {
+  display: flex;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 24px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-label {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .profile-card {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .profile-stats {
+    gap: 16px;
+  }
+  .stat-value {
+    font-size: 20px;
+  }
+}
+
+/* ===================================
+GAME LIBRARY LIST (PÁGINA INTERNA)
+=================================== */
+.games-page h1 {
+  margin-bottom: 20px;
+}
+
+.games-page #game-list {
+  margin-top: 20px;
+}
+
+/* ===================================
 GAME CARDS (PÁGINA INICIAL)
 =================================== */
 .game-card-grid {

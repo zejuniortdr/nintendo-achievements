@@ -79,6 +79,30 @@ function getProgressStats(gameId, tasks) {
   return { done, total, percent };
 }
 
+async function renderProfile() {
+  const section = document.getElementById("profile-section");
+  if (!section) return;
+
+  const games = await loadGames();
+  let achievements = 0;
+
+  for (const game of games) {
+    const tasks = await loadChecklistTasks(gamesBasePath() + game.path);
+    achievements += getProgressStats(game.id, tasks).done;
+  }
+
+  let profile = {};
+  try {
+    const res = await fetch("profile.json");
+    if (res.ok) profile = await res.json();
+  } catch {}
+
+  document.getElementById("profile-gamertag").textContent = profile.gamertag || "Player One";
+  document.getElementById("profile-avatar").src = profile.avatar || "assets/img/profile-avatar.svg";
+  document.getElementById("stat-games").textContent = games.length;
+  document.getElementById("stat-achievements").textContent = achievements;
+}
+
 async function renderGameList() {
   const games = await loadGames();
   const container = document.getElementById("game-list");
@@ -211,5 +235,6 @@ function initChecklist(gameId, tasks) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  renderProfile();
   renderGameList();
 });
