@@ -11,15 +11,72 @@ async function loadGames() {
   return await res.json();
 }
 
-function getProgress(key) {
-  const items = Object.keys(localStorage).filter(k => k.startsWith(key));
-  const total = items.length;
+function progressKey(gameId) {
+  return `game-progress:${gameId}`;
+}
 
-  if (total === 0) return 0;
+function loadProgress(gameId) {
+  try {
+    return JSON.parse(localStorage.getItem(progressKey(gameId)) || "{}");
+  } catch {
+    return {};
+  }
+}
 
-  const done = items.filter(k => localStorage.getItem(k) === "true").length;
+function saveProgress(gameId, progress) {
+  localStorage.setItem(progressKey(gameId), JSON.stringify(progress));
+}
 
-  return Math.round((done / total) * 100);
+function migrateLegacyProgress(gameId) {
+  const prefix = `${gameId}-`;
+  const progress = loadProgress(gameId);
+  let changed = false;
+
+  Object.keys(localStorage).forEach(key => {
+    if (!key.startsWith(prefix)) return;
+
+    const taskId = key.slice(prefix.length);
+    if (localStorage.getItem(key) === "true") {
+      progress[taskId] = true;
+    }
+
+    localStorage.removeItem(key);
+    changed = true;
+  });
+
+  if (changed) saveProgress(gameId, progress);
+}
+
+function getStoredTaskState(progress, task) {
+  if (Object.prototype.hasOwnProperty.call(progress, task.id)) {
+    return progress[task.id];
+  }
+
+  if (task.legacyId && Object.prototype.hasOwnProperty.call(progress, task.legacyId)) {
+    return progress[task.legacyId];
+  }
+
+  return undefined;
+}
+
+function isTaskDone(task, progress) {
+  const stored = getStoredTaskState(progress, task);
+
+  if (stored === true) return true;
+  if (stored === false) return false;
+
+  return task.mdDone;
+}
+
+function getProgressStats(gameId, tasks) {
+  migrateLegacyProgress(gameId);
+
+  const progress = loadProgress(gameId);
+  const total = tasks.length;
+  const done = tasks.filter(task => isTaskDone(task, progress)).length;
+  const percent = total > 0 ? Math.round((done / total) * 100) : 0;
+
+  return { done, total, percent };
 }
 
 async function renderGameList() {
@@ -31,10 +88,11 @@ async function renderGameList() {
   const prefix = gamesBasePath();
   const gamePage = prefix + "game.html";
 
-  container.innerHTML = games.map(game => {
+  const cards = await Promise.all(games.map(async game => {
+    const tasks = await loadChecklistTasks(prefix + game.path);
+    const { done, total, percent } = getProgressStats(game.id, tasks);
     const basePath = game.path.replace("game.md", "");
     const cover = prefix + basePath + "imgs/cover.jpeg";
-    const progress = getProgress(game.id);
     const tags = (game.tags || [])
       .map(t => `<span class="game-tag">${t}</span>`)
       .join("");
@@ -52,62 +110,89 @@ async function renderGameList() {
           ${tags ? `<div class="game-tags">${tags}</div>` : ""}
 
           <div class="progress-bar">
-            <div class="progress-bar-fill" style="width:${progress}%"></div>
+            <div class="progress-bar-fill" style="width:${percent}%"></div>
           </div>
 
-          <p>${progress}% complete</p>
+          <p>${done}/${total} · ${percent}% complete</p>
         </div>
       </a>
     `;
-  }).join("");
+  }));
+
+  container.innerHTML = cards.join("");
 }
+
 async function loadGameById(id) {
   const games = await loadGames();
   const game = games.find(g => g.id === id);
 
   if (!game) return;
 
-  const { meta, html } = await loadMarkdown(game.path);
+  const { meta, html, tasks } = await loadMarkdown(game.path);
   const basePath = game.path.replace("game.md", "");
 
   document.getElementById("game-title").textContent = meta.title;
   document.getElementById("game-meta").textContent = `${meta.platform} · ${meta.tags}`;
-  
-  // Prioriza o header para a página interna; se não existir, faz fallback para o cover
   document.getElementById("game-cover").src = basePath + (meta.header || meta.cover);
-  
   document.getElementById("game-container").innerHTML = html;
 
-  initChecklist(game.id);
+  initChecklist(game.id, tasks);
 }
 
-function initChecklist(key) {
+function initChecklist(gameId, tasks) {
   const section = document.querySelector(".checklist-section");
   if (!section) return;
-  
-  const checkboxes = section.querySelectorAll("input");
+
+  migrateLegacyProgress(gameId);
+
+  const checkboxes = section.querySelectorAll("input[type='checkbox']");
   const text = document.getElementById("progress-text");
   const bar = document.getElementById("progress-fill");
+  const taskById = Object.fromEntries(tasks.map(task => [task.id, task]));
 
   checkboxes.forEach(cb => {
-    const storageKey = key + "-" + cb.dataset.taskId;
-    const saved = localStorage.getItem(storageKey);
-    
-    if (saved === "true") cb.checked = true;
+    const taskId = cb.dataset.taskId;
+    const task = taskById[taskId];
+    const progress = loadProgress(gameId);
+
+    if (task) {
+      cb.checked = isTaskDone(task, progress);
+
+      const legacyId = task.legacyId;
+      if (legacyId && progress[legacyId] && !progress[taskId]) {
+        progress[taskId] = progress[legacyId];
+        delete progress[legacyId];
+        saveProgress(gameId, progress);
+      }
+    }
 
     cb.addEventListener("change", () => {
-      localStorage.setItem(storageKey, cb.checked);
+      const current = loadProgress(gameId);
+
+      if (cb.checked) {
+        if (task && task.mdDone) {
+          delete current[taskId];
+          if (task.legacyId) delete current[task.legacyId];
+        } else {
+          current[taskId] = true;
+        }
+      } else if (task && task.mdDone) {
+        current[taskId] = false;
+      } else {
+        delete current[taskId];
+        if (task && task.legacyId) delete current[task.legacyId];
+      }
+
+      saveProgress(gameId, current);
       update();
     });
   });
 
   function update() {
-    const total = checkboxes.length;
-    const done = [...checkboxes].filter(c => c.checked).length;
-    const percent = total > 0 ? Math.round((done / total) * 100) : 0;
+    const stats = getProgressStats(gameId, tasks);
 
-    if(text) text.textContent = `${done} / ${total}`;
-    if(bar) bar.style.width = percent + "%";
+    if (text) text.textContent = `${stats.done} / ${stats.total}`;
+    if (bar) bar.style.width = stats.percent + "%";
   }
 
   update();
@@ -115,17 +200,16 @@ function initChecklist(key) {
   const resetBtn = document.querySelector(".reset-button");
   if (resetBtn) {
     resetBtn.onclick = () => {
+      saveProgress(gameId, {});
       checkboxes.forEach(cb => {
-        const storageKey = key + "-" + cb.dataset.taskId;
-        localStorage.removeItem(storageKey);
-        cb.checked = false;
+        const task = taskById[cb.dataset.taskId];
+        cb.checked = task ? task.mdDone : false;
       });
       update();
     };
   }
 }
 
-// Inicialização sem o bloco de busca
 document.addEventListener("DOMContentLoaded", () => {
   renderGameList();
 });

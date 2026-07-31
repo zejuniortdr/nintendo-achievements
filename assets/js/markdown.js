@@ -3,9 +3,17 @@ async function loadMarkdown(path) {
   const text = await res.text();
 
   const { meta, content } = parseFrontmatter(text);
-  const html = renderMarkdown(content);
+  const tasks = parseChecklistTasks(content);
+  const html = renderChecklistHtml(tasks);
 
-  return { meta, html };
+  return { meta, html, tasks };
+}
+
+async function loadChecklistTasks(path) {
+  const res = await fetch(path);
+  const text = await res.text();
+  const { content } = parseFrontmatter(text);
+  return parseChecklistTasks(content);
 }
 
 function parseFrontmatter(md) {
@@ -28,31 +36,65 @@ function parseFrontmatter(md) {
   };
 }
 
-function renderMarkdown(md) {
-  const lines = md.split("\n");
-  let html = "";
-  let checklistOpen = false;
+function parseChecklistTasks(content) {
+  const lines = content.split("\n");
+  const tasks = [];
+  let section = "";
 
   lines.forEach(line => {
     if (line.startsWith("## ")) {
-      if (checklistOpen) html += "</ul>";
-      html += `<h2>${line.replace("## ", "")}</h2><ul class="checklist">`;
-      checklistOpen = true;
-    } else if (line.trim().startsWith("- [ ]")) {
-      const raw = line.replace("- [ ]", "").trim();
-      const [title, desc] = raw.split("  ");
-      const id = title.toLowerCase().replace(/[^a-z0-9]/g, "");
-
-      html += `
-        <li>
-          <label>
-            <input type="checkbox" class="checklist-item" data-task-id="${id}">
-            ${title}
-            ${desc ? `<small>${desc}</small>` : ""}
-          </label>
-        </li>
-      `;
+      section = line.replace("## ", "").trim();
+      return;
     }
+
+    const match = line.trim().match(/^- \[([ xX])\]\s*(.*)$/);
+    if (!match) return;
+
+    const mdDone = match[1].toLowerCase() === "x";
+    const raw = match[2].trim();
+    const [title, desc] = raw.split("  ");
+    const sectionSlug = section
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+    const taskSlug = title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+    const legacyId = title.toLowerCase().replace(/[^a-z0-9]/g, "");
+    const id = sectionSlug ? `${sectionSlug}-${taskSlug}` : taskSlug;
+
+    tasks.push({ id, legacyId, section, title, desc, mdDone });
+  });
+
+  return tasks;
+}
+
+function renderChecklistHtml(tasks) {
+  let html = "";
+  let checklistOpen = false;
+  let lastSection = null;
+
+  tasks.forEach(task => {
+    if (task.section !== lastSection) {
+      if (checklistOpen) html += "</ul>";
+      html += `<h2>${task.section}</h2><ul class="checklist">`;
+      checklistOpen = true;
+      lastSection = task.section;
+    }
+
+    const checked = task.mdDone ? " checked" : "";
+    const mdDone = task.mdDone ? ' data-md-done="true"' : "";
+
+    html += `
+      <li>
+        <label>
+          <input type="checkbox" class="checklist-item" data-task-id="${task.id}" data-legacy-task-id="${task.legacyId}"${checked}${mdDone}>
+          ${task.title}
+          ${task.desc ? `<small>${task.desc}</small>` : ""}
+        </label>
+      </li>
+    `;
   });
 
   if (checklistOpen) html += "</ul>";

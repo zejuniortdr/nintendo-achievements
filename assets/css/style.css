@@ -53,6 +53,11 @@ body {
   color: var(--color-accent);
   text-transform: uppercase;
   letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.site-logo:hover {
+  opacity: 0.85;
 }
 
 .main-nav a {
