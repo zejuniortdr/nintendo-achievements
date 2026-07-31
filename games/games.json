@@ -1,0 +1,9 @@
+[
+    {
+        "id": "star-fox",
+        "title": "Star Fox",
+        "platform": "Switch 2",
+        "tags": ["Shooter", "Classic"],
+        "path": "switch2/star-fox/game.md"
+    }
+]

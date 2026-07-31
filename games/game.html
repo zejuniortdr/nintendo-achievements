@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Game Details</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="site-logo">Nintendo Achievements</div>
+      <nav class="main-nav">
+        <a href="../index.html">Home</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container game-two-column-layout">
+    <div class="game-main-content">
+      <div>
+        <h1 id="game-title"></h1>
+        <p id="game-meta"></p>
+        <div class="progress-bar">
+          <div id="progress-fill" class="progress-bar-fill"></div>
+        </div>
+        <p id="progress-text"></p>
+      </div>
+
+      <div id="game-container"></div>
+    </div>
+
+    <aside class="game-sidebar-right">
+      <div class="game-cover-lg">
+        <img id="game-cover" alt="Game Cover" class="game-cover-img">
+      </div>
+    </aside>
+  </main>
+
+  <script src="../assets/js/markdown.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const gameId = params.get("id");
+    
+    if (gameId) {
+      loadGameById(gameId);
+    }
+  </script>
+
+</body>
+</html>

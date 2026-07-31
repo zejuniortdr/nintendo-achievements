@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Switch 2 Games · Nintendo 100% Checklists</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <a href="../index.html" class="site-logo">
+        <span class="logo-icon">🎮</span>
+        <span class="logo-text">Nintendo 100% Checklists</span>
+      </a>
+      <nav class="main-nav">
+        <a href="../index.html">Home</a>
+        <a href="../games/index.html">Games</a>
+        <a href="../#how-to-use">How to Use</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumb">
+      <a href="../index.html">Home</a> · <span>Switch 2</span>
+    </nav>
+
+    <section class="platform-header">
+      <h1>Switch 2 Games</h1>
+      <p>Routes, collectibles, and 100% completion tracking for Nintendo titles.</p>
+    </section>
+
+    <section class="game-list-section">
+      <div class="game-list-header">
+        <h2>Game Library</h2>
+        <input
+          type="search"
+          id="game-search-switch2"
+          class="game-search-input"
+          placeholder="Search Switch 2 games..."
+          data-game-list="switch2-game-list"
+        >
+      </div>
+
+      <div class="game-card-grid" id="switch2-game-list">
+        <a href="switch2/star-fox/" class="game-card" data-game-name="star fox">
+          <div class="game-cover-wrapper">
+            <img src="switch2/star-fox/imgs/cover.jpeg" alt="Star Fox" class="game-cover-img" onerror="this.remove()">
+            <div class="game-cover-placeholder">STAR FOX</div>
+          </div>
+          <div class="game-card-content">
+            <h3>Star Fox</h3>
+            <p>All missions, medals, and 100% completion checklist.</p>
+            <div class="game-tags">
+              <span class="game-tag">Shooter</span>
+              <span class="game-tag">Rail Shooter</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Nintendo completion tracking, your way.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
