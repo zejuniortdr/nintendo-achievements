@@ -121,7 +121,7 @@ async function renderGameList() {
     const { meta, tasks } = await loadChecklistTasks(prefix + game.path);
     const { done, total, percent } = getProgressStats(game.id, tasks);
     const basePath = game.path.replace("game.md", "");
-    const cover = prefix + basePath + (meta.cover || "imgs/cover.jpeg");
+    const cover = prefix + basePath + (meta.cover || "imgs/cover.jpg");
     const tags = (game.tags || [])
       .map(t => `<span class="game-tag">${t}</span>`)
       .join("");

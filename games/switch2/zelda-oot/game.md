@@ -1,7 +1,7 @@
 ---
 title: The Legend of Zelda: Ocarina of Time
 platform: N64 · Switch Online
-cover: imgs/cover.webp
+cover: imgs/cover.jpg
 tags: Aventura, Classico
 header: imgs/header.jpg
 ---

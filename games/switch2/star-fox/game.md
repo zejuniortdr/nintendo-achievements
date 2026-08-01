@@ -1,9 +1,9 @@
 ---
 title: Star Fox
 platform: Switch 2
-cover: imgs/cover.jpeg
+cover: imgs/cover.jpg
 tags: Shooter, Rail Shooter
-header: imgs/header.png
+header: imgs/header.jpg
 ---
 
 ## Rota 1 (Fácil)
