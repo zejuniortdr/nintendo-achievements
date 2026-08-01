@@ -242,10 +242,26 @@ GAME LIBRARY LIST (PÁGINA INTERNA)
 /* ===================================
 GAME CARDS — CARTUCHO N64
 =================================== */
+.platform-section + .platform-section {
+  margin-top: 40px;
+}
+
+.platform-section-title {
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: var(--color-accent-2);
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 8px;
+}
+
 .game-card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 28px;
+}
+
+.game-card-grid.cover-landscape {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 }
 
 .game-card {
@@ -265,6 +281,10 @@ GAME CARDS — CARTUCHO N64
   border-top: 6px solid var(--color-accent-2);
   box-shadow: var(--shadow-hard);
   transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.cover-landscape .game-cover-wrapper {
+  aspect-ratio: 16 / 9;
 }
 
 .game-card:nth-child(3n+2) .game-cover-wrapper { border-top-color: var(--color-accent); }

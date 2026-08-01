@@ -108,6 +108,33 @@ async function renderProfile() {
   document.getElementById("stat-achievements").textContent = achievements;
 }
 
+const IMAGE_FALLBACK_EXTENSIONS = ["jpg", "jpeg", "png", "webp"];
+
+// ponytail: covers/headers referenced in game.md often drift from the real file
+// extension (png saved but .md still says .jpg). Instead of hand-editing every
+// game.md when that happens, retry the same path with sibling extensions.
+function withImageExtensionFallback(img) {
+  img.addEventListener("error", () => {
+    const tried = (img.dataset.extTried || "").split(",").filter(Boolean);
+    const match = img.src.match(/\.([a-zA-Z0-9]+)$/);
+    const currentExt = match ? match[1].toLowerCase() : "";
+    if (currentExt) tried.push(currentExt);
+
+    const nextExt = IMAGE_FALLBACK_EXTENSIONS.find(ext => !tried.includes(ext));
+    if (!nextExt) return;
+
+    tried.push(nextExt);
+    img.dataset.extTried = tried.join(",");
+    img.src = img.src.replace(/\.[a-zA-Z0-9]+$/, "." + nextExt);
+  });
+}
+
+const PLATFORM_SECTIONS = [
+  { group: "switch2", label: "Switch 2", coverClass: "cover-portrait" },
+  { group: "n64", label: "Nintendo 64", coverClass: "cover-landscape" },
+  { group: "snes", label: "Super Nintendo", coverClass: "cover-landscape" }
+];
+
 async function renderGameList() {
   const games = await loadActiveGames();
   const container = document.getElementById("game-list");
@@ -117,7 +144,7 @@ async function renderGameList() {
   const prefix = gamesBasePath();
   const gamePage = prefix + "game.html";
 
-  const cards = await Promise.all(games.map(async game => {
+  const cardsByGame = new Map(await Promise.all(games.map(async game => {
     const { meta, tasks } = await loadChecklistTasks(prefix + game.path);
     const { done, total, percent } = getProgressStats(game.id, tasks);
     const basePath = game.path.replace("game.md", "");
@@ -126,7 +153,7 @@ async function renderGameList() {
       .map(t => `<span class="game-tag">${t}</span>`)
       .join("");
 
-    return `
+    const html = `
       <a href="${gamePage}?id=${game.id}" class="game-card" data-game-name="${game.title.toLowerCase()}">
         <div class="game-cover-wrapper">
           <img src="${cover}" alt="${game.title}" class="game-cover-img">
@@ -146,9 +173,26 @@ async function renderGameList() {
         </div>
       </a>
     `;
-  }));
 
-  container.innerHTML = cards.join("");
+    return [game, html];
+  })));
+
+  const sections = PLATFORM_SECTIONS.map(section => {
+    const sectionGames = games.filter(g => (g.group || "switch2") === section.group);
+    if (sectionGames.length === 0) return "";
+
+    const cards = sectionGames.map(g => cardsByGame.get(g)).join("");
+
+    return `
+      <section class="platform-section">
+        <h2 class="platform-section-title">${section.label}</h2>
+        <div class="game-card-grid ${section.coverClass}">${cards}</div>
+      </section>
+    `;
+  }).join("");
+
+  container.innerHTML = sections;
+  container.querySelectorAll("img.game-cover-img").forEach(withImageExtensionFallback);
 }
 
 function renderGameNotFound() {
@@ -176,7 +220,9 @@ async function loadGameById(id) {
 
   document.getElementById("game-title").textContent = meta.title;
   document.getElementById("game-meta").textContent = `${meta.platform} · ${meta.tags}`;
-  document.getElementById("game-cover").src = basePath + (meta.header || meta.cover);
+  const coverImg = document.getElementById("game-cover");
+  coverImg.src = basePath + (meta.header || meta.cover);
+  withImageExtensionFallback(coverImg);
   document.getElementById("game-container").innerHTML = html;
 
   initChecklist(game.id, tasks);

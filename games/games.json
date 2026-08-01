@@ -3,6 +3,7 @@
         "id": "star-fox",
         "title": "Star Fox",
         "platform": "Switch 2",
+        "group": "switch2",
         "tags": ["Shooter", "Classic"],
         "path": "switch2/star-fox/game.md",
         "active": true
@@ -11,8 +12,81 @@
         "id": "zelda-oot",
         "title": "The Legend of Zelda: Ocarina of Time",
         "platform": "N64 · Switch Online",
+        "group": "switch2",
         "tags": ["Adventure", "Classic"],
         "path": "switch2/zelda-oot/game.md",
+        "active": true
+    },
+    {
+        "id": "zelda-oot-n64",
+        "title": "The Legend of Zelda: Ocarina of Time",
+        "platform": "N64",
+        "group": "n64",
+        "tags": ["Adventure", "Classic"],
+        "path": "n64/zelda-oot/game.md",
+        "active": true
+    },
+    {
+        "id": "star-fox-n64",
+        "title": "Star Fox 64",
+        "platform": "N64",
+        "group": "n64",
+        "tags": ["Shooter", "Classic"],
+        "path": "n64/star-fox/game.md",
+        "active": true
+    },
+    {
+        "id": "mario-64",
+        "title": "Super Mario 64",
+        "platform": "N64",
+        "group": "n64",
+        "tags": ["Platform", "Classic"],
+        "path": "n64/mario-64/game.md",
+        "active": true
+    },
+    {
+        "id": "mario-kart-64",
+        "title": "Mario Kart 64",
+        "platform": "N64",
+        "group": "n64",
+        "tags": ["Racing", "Classic"],
+        "path": "n64/mario-kart-64/game.md",
+        "active": true
+    },
+    {
+        "id": "goldeneye-007",
+        "title": "GoldenEye 007",
+        "platform": "N64",
+        "group": "n64",
+        "tags": ["Shooter", "Classic"],
+        "path": "n64/goldeneye/game.md",
+        "active": true
+    },
+    {
+        "id": "dkc-1",
+        "title": "Donkey Kong Country",
+        "platform": "SNES",
+        "group": "snes",
+        "tags": ["Platform", "Classic"],
+        "path": "snes/donkey-kong-country/game.md",
+        "active": true
+    },
+    {
+        "id": "dkc-2",
+        "title": "Donkey Kong Country 2",
+        "platform": "SNES",
+        "group": "snes",
+        "tags": ["Platform", "Classic"],
+        "path": "snes/donkey-kong-country-2/game.md",
+        "active": true
+    },
+    {
+        "id": "dkc-3",
+        "title": "Donkey Kong Country 3",
+        "platform": "SNES",
+        "group": "snes",
+        "tags": ["Platform", "Classic"],
+        "path": "snes/donkey-kong-country-3/game.md",
         "active": true
     }
 ]
