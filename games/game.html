@@ -45,11 +45,7 @@
   <script src="../assets/js/main.js"></script>
   <script>
     const params = new URLSearchParams(window.location.search);
-    const gameId = params.get("id");
-    
-    if (gameId) {
-      loadGameById(gameId);
-    }
+    loadGameById(params.get("id"));
   </script>
 
 </body>

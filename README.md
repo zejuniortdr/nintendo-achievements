@@ -61,83 +61,90 @@ python3 -m http.server 8000
 ## Project Structure
 
 ```
-game-checklists/
+nintendo-achievements/
 ├─ index.html                      # Landing page
-├─ platforms/
-│  └─ switch2.html                 # Switch 2 game library
 ├─ games/
+│  ├─ index.html                   # Games list (reads games.json)
+│  ├─ game.html                    # Single dynamic detail template (?id=<gameId>)
+│  ├─ games.json                   # Registry of all games
 │  └─ switch2/
-│     └─ zelda-totk.html           # Switch 2 game checklist
+│     └─ star-fox/
+│        ├─ game.md                # Frontmatter + checklist (markdown)
+│        └─ imgs/
+│           ├─ cover.jpg
+│           └─ header.jpg
 ├─ assets/
-│  ├─ css/
-│  │  └─ style.css                 # Global styles
+│  ├─ css/style.css
 │  ├─ js/
-│  │  └─ main.js                   # Interactive functionality
-│  └─ img/                        # Game cover images (optional)
-├─ Makefile                        # Local testing commands
-└─ README.md                       # This file
+│  │  ├─ main.js                   # Data loading, rendering, progress
+│  │  └─ markdown.js               # Frontmatter + checklist parser
+│  └─ img/
+├─ Makefile
+└─ README.md
 ```
 
-## Adding New Content
+There is **one** detail page: `games/game.html`. It reads `id` from the query
+string, looks it up in `games/games.json`, fetches the matching `game.md`,
+and renders title, metadata, cover, checklist and progress bar. Games never
+get their own `index.html` — that pattern was tried and removed because it
+duplicated rendering logic and drifted out of sync with the JSON registry.
 
-### Add a New Platform
+## Adding a New Game
 
-1. Create a new HTML file in `platforms/` (e.g., `xbox.html`)
-2. Copy the structure from `switch2.html`
-3. Update:
-   - `<title>` and `<h1>` with platform name
-   - Breadcrumb navigation
-   - Game list section with new game cards
-4. Add a link to the new platform in the main navigation (all pages)
+1. Add an entry to `games/games.json`:
+   ```json
+   {
+     "id": "your-game-id",
+     "title": "Your Game Title",
+     "platform": "Switch 2",
+     "tags": ["Adventure"],
+     "path": "switch2/your-game-id/game.md",
+     "active": true
+   }
+   ```
+2. Create the folder `games/switch2/your-game-id/`.
+3. Add `game.md` with frontmatter + checklist:
+   ```markdown
+   ---
+   title: Your Game Title
+   platform: Switch 2
+   tags: Adventure
+   cover: imgs/cover.jpg
+   ---
 
-### Add a New Game
+   ## Main Story
 
-1. Create a new HTML file in `games/<platform>/` (e.g., `games/switch2/zelda-totk.html`)
-2. Use an existing game page as a template
-3. Update:
-   - `<title>` and `<h1>` with game title
-   - Breadcrumb navigation
-   - `data-checklist-key` in the checklist section (must be unique, e.g., `zelda-totk-switch2`)
-   - Progress bar element IDs (e.g., `zelda-totk-progress-fill`, `zelda-totk-progress-text`)
-   - Checklist items with your completion tasks
-4. Add a game card linking to the new page in the platform's HTML file
+   - [ ] Task title  Optional longer description
+   - [x] Already completed task
+   ```
+4. Add `imgs/cover.jpg` (and `imgs/header.jpg` if you want a banner asset).
+5. Open `games/game.html?id=your-game-id` to verify it renders.
+
+No new HTML file is needed — the dynamic template handles every game.
 
 ### Checklist Format
 
-Each checklist item uses this structure:
+Each line under a `## Section` heading becomes one checklist item:
 
-```html
-<li>
-  <label>
-    <input type="checkbox" class="checklist-item" data-task-id="unique-task-id">
-    Task description (e.g., "Complete Chapter 1", "Trophy: Platinum")
-  </label>
-</li>
+```markdown
+- [ ] Task title  Optional description
+- [x] Already-done task
 ```
 
-**Tips:**
-
-- Use `data-task-id` values that are unique within the game
-- Mark missable trophies with a `.missable` class for visual distinction
-- Group tasks by category (Main Story, Side Content, Trophies, DLC, etc.)
+- `[x]` marks a task as done by default (`mdDone`); the user can still toggle it.
+- Title and description are split on the **first** double-space — keep the
+  title short and put any longer text after two spaces.
+- Task IDs are derived from the section + title, slugified.
 
 ## How Progress is Stored
 
-Progress is saved in your browser's `localStorage` using this key format:
-
-```
-checklist:<game-checklist-key>:<task-id>
-```
-
-For example, completing a task in God of War Ragnarok creates:
-
-```
-checklist:zelda-totk-switch2:main-01 = "true"
-```
+Progress is saved in `localStorage` under `game-progress:<gameId>` as a JSON
+map of `taskId -> boolean`. Only overrides are stored — an unmarked entry
+falls back to the task's `mdDone` value from the markdown.
 
 **To reset progress:**
 
-- Click the "Reset Progress" button on any game page, or
+- Click the "Reset Progress" button on the game's detail page, or
 - Clear your browser's localStorage for the site
 
 ## Customization
@@ -159,14 +166,9 @@ Edit `assets/css/style.css` and modify the CSS variables:
 
 ### Add Game Cover Images
 
-1. Add images to `assets/img/` (recommended: 400x600px)
-2. Replace `.game-cover-placeholder` with actual `<img>` tags:
-
-```html
-<img src="../../assets/img/covers/god-of-war-ragnarok.jpg" alt="God of War Ragnarok" class="game-cover">
-```
-
-3. Update CSS as needed for proper sizing
+Put `cover.jpg` (and optionally `header.jpg`) inside the game's `imgs/`
+folder and reference it via the `cover`/`header` frontmatter keys in
+`game.md` — no HTML or CSS changes needed.
 
 ## Browser Support
 

@@ -52,7 +52,9 @@ function parseChecklistTasks(content) {
 
     const mdDone = match[1].toLowerCase() === "x";
     const raw = match[2].trim();
-    const [title, desc] = raw.split("  ");
+    const sepIndex = raw.indexOf("  ");
+    const title = sepIndex >= 0 ? raw.slice(0, sepIndex).trim() : raw;
+    const desc = sepIndex >= 0 ? raw.slice(sepIndex).trim() : "";
     const sectionSlug = section
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")

@@ -151,11 +151,25 @@ async function renderGameList() {
   container.innerHTML = cards.join("");
 }
 
+function renderGameNotFound() {
+  document.getElementById("game-title").textContent = "Game not found";
+  document.getElementById("game-meta").textContent = "";
+  document.getElementById("game-container").innerHTML = `
+    <p>We couldn't find this game. It may have been removed or the link is wrong.</p>
+    <p><a href="${gamesBasePath()}index.html">Back to Games</a></p>
+  `;
+  const sidebar = document.querySelector(".game-sidebar-right");
+  if (sidebar) sidebar.hidden = true;
+}
+
 async function loadGameById(id) {
   const games = await loadGames();
   const game = games.find(g => g.id === id);
 
-  if (!game) return;
+  if (!game) {
+    renderGameNotFound();
+    return;
+  }
 
   const { meta, html, tasks } = await loadMarkdown(game.path);
   const basePath = game.path.replace("game.md", "");
