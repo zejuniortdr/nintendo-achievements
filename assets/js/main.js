@@ -11,6 +11,11 @@ async function loadGames() {
   return await res.json();
 }
 
+async function loadActiveGames() {
+  const games = await loadGames();
+  return games.filter(game => game.active === true);
+}
+
 function progressKey(gameId) {
   return `game-progress:${gameId}`;
 }
@@ -83,11 +88,11 @@ async function renderProfile() {
   const section = document.getElementById("profile-section");
   if (!section) return;
 
-  const games = await loadGames();
+  const games = await loadActiveGames();
   let achievements = 0;
 
   for (const game of games) {
-    const tasks = await loadChecklistTasks(gamesBasePath() + game.path);
+    const { tasks } = await loadChecklistTasks(gamesBasePath() + game.path);
     achievements += getProgressStats(game.id, tasks).done;
   }
 
@@ -104,7 +109,7 @@ async function renderProfile() {
 }
 
 async function renderGameList() {
-  const games = await loadGames();
+  const games = await loadActiveGames();
   const container = document.getElementById("game-list");
 
   if (!container) return;
@@ -113,10 +118,10 @@ async function renderGameList() {
   const gamePage = prefix + "game.html";
 
   const cards = await Promise.all(games.map(async game => {
-    const tasks = await loadChecklistTasks(prefix + game.path);
+    const { meta, tasks } = await loadChecklistTasks(prefix + game.path);
     const { done, total, percent } = getProgressStats(game.id, tasks);
     const basePath = game.path.replace("game.md", "");
-    const cover = prefix + basePath + "imgs/cover.jpeg";
+    const cover = prefix + basePath + (meta.cover || "imgs/cover.jpeg");
     const tags = (game.tags || [])
       .map(t => `<span class="game-tag">${t}</span>`)
       .join("");
@@ -234,7 +239,20 @@ function initChecklist(gameId, tasks) {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderProfile();
-  renderGameList();
+function initGameSearch() {
+  const input = document.getElementById("game-search");
+  if (!input) return;
+
+  input.addEventListener("input", () => {
+    const query = input.value.trim().toLowerCase();
+    document.querySelectorAll("#game-list .game-card").forEach(card => {
+      card.style.display = card.dataset.gameName.includes(query) ? "" : "none";
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await renderProfile();
+  await renderGameList();
+  initGameSearch();
 });

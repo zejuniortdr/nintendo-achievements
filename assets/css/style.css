@@ -1,18 +1,30 @@
 /* ===================================
-Nintendo 100% Checklists
+Nintendo Achievements — tema N64
+Bisel 3D skeuomórfico, cartões-cartucho,
+medidor de progresso estilo Ocarina of Time.
 =================================== */
 
 :root {
-  --color-bg: #0f1115;
-  --color-card: #171a21;
-  --color-border: #22252e;
-  --color-text: #e6e6e6;
-  --color-text-muted: #9aa0a6;
-  --color-accent: #E60012; /* Vermelho Nintendo */
+  --color-bg: #12141c;
+  --color-bg-alt: #0a0b11;
+  --color-panel: #1c2030;
+  --color-panel-2: #262c42;
+  --color-border: #383f5c;
+  --color-text: #eef0f7;
+  --color-text-muted: #9098b8;
+
+  --color-accent: #E60012;   /* vermelho Nintendo / Star Fox */
+  --color-accent-2: #4169E1; /* azul controle N64 */
+  --color-accent-3: #ffd23f; /* amarelo N64, uso pontual */
   --color-danger: #ff4d4f;
 
+  --bevel-light: rgba(255, 255, 255, 0.16);
+  --bevel-dark: rgba(0, 0, 0, 0.6);
+
   --radius: 10px;
-  --shadow: rgba(0,0,0,0.4) 0px 10px 25px;
+  --shadow: rgba(0, 0, 0, 0.4) 0px 10px 25px;
+  --shadow-hard: 4px 4px 0 rgba(0, 0, 0, 0.45);
+  --shadow-hard-sm: 2px 2px 0 rgba(0, 0, 0, 0.45);
 }
 
 /* Reset */
@@ -23,9 +35,29 @@ Nintendo 100% Checklists
 }
 
 body {
-  background: var(--color-bg);
+  background:
+    radial-gradient(ellipse at top, #191d2c 0%, var(--color-bg) 60%);
   color: var(--color-text);
-  font-family: Inter, sans-serif;
+  font-family: "Rubik", system-ui, sans-serif;
+}
+
+h1, h2, .site-logo, .profile-info h1 {
+  font-family: "Baloo 2", "Rubik", system-ui, sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+/* Bisel 3D reutilizável — base de todo painel skeuomórfico */
+.bevel-panel {
+  background: linear-gradient(155deg, var(--color-panel-2), var(--color-panel));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow:
+    inset 1px 1px 0 var(--bevel-light),
+    inset -2px -2px 0 var(--bevel-dark),
+    var(--shadow-hard);
 }
 
 /* Layout */
@@ -37,8 +69,9 @@ body {
 
 /* Header */
 .site-header {
-  border-bottom: 1px solid var(--color-border);
-  background: #0b0d12;
+  border-bottom: 3px solid var(--color-border);
+  background: var(--color-bg-alt);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
 }
 
 .header-content {
@@ -48,12 +81,25 @@ body {
 }
 
 .site-logo {
-  font-weight: 900;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
   font-size: 20px;
   color: var(--color-accent);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   text-decoration: none;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.site-logo::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 6px 2px var(--color-accent);
 }
 
 .site-logo:hover {
@@ -61,14 +107,20 @@ body {
 }
 
 .main-nav a {
-  margin-left: 16px;
+  margin-left: 20px;
   color: var(--color-text-muted);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 14px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
 }
 
-.main-nav a.active, .main-nav a:hover {
-  color: var(--color-accent);
+.main-nav a.active,
+.main-nav a:hover {
+  color: var(--color-accent-2);
+  border-color: var(--color-accent-2);
 }
 
 /* ===================================
@@ -82,18 +134,15 @@ PROFILE (PÁGINA INICIAL)
   display: flex;
   align-items: center;
   gap: 20px;
-  background: var(--color-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
   padding: 24px;
-  box-shadow: var(--shadow);
 }
 
 .profile-avatar {
-  width: 96px;
-  height: 96px;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
   border: 3px solid var(--color-accent);
+  box-shadow: inset 0 0 0 3px var(--color-bg-alt), var(--shadow-hard-sm);
   object-fit: cover;
   flex-shrink: 0;
 }
@@ -105,7 +154,7 @@ PROFILE (PÁGINA INICIAL)
 
 .profile-info h1 {
   font-size: 22px;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--color-accent);
 }
 
@@ -117,25 +166,32 @@ PROFILE (PÁGINA INICIAL)
 
 .profile-stats {
   display: flex;
-  gap: 24px;
+  gap: 16px;
   flex-shrink: 0;
 }
 
 .stat {
   text-align: center;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 8px 16px;
+  box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.4);
 }
 
 .stat-value {
   display: block;
-  font-size: 24px;
-  font-weight: 800;
+  font-family: "Baloo 2", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-accent-3);
   font-variant-numeric: tabular-nums;
 }
 
 .stat-label {
   display: block;
   margin-top: 2px;
-  font-size: 12px;
+  font-size: 11px;
   color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -147,10 +203,10 @@ PROFILE (PÁGINA INICIAL)
     gap: 16px;
   }
   .profile-stats {
-    gap: 16px;
+    gap: 10px;
   }
   .stat-value {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 
@@ -165,33 +221,65 @@ GAME LIBRARY LIST (PÁGINA INTERNA)
   margin-top: 20px;
 }
 
+#game-search {
+  width: 100%;
+  max-width: 320px;
+  padding: 10px 14px;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 14px;
+  box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.4);
+}
+
+#game-search:focus-visible {
+  outline: 2px solid var(--color-accent-2);
+  outline-offset: 2px;
+}
+
 /* ===================================
-GAME CARDS (PÁGINA INICIAL)
+GAME CARDS — CARTUCHO N64
 =================================== */
 .game-card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 24px;
+  gap: 28px;
 }
 
 .game-card {
   display: block;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.2s;
-}
-
-.game-card:hover {
-  transform: translateY(-4px);
 }
 
 .game-cover-wrapper {
+  position: relative;
   width: 100%;
   aspect-ratio: 2 / 3;
   overflow: hidden;
-  border-radius: var(--radius);
+  border-radius: 12px 12px 4px 4px;
   background: #000;
-  box-shadow: var(--shadow);
+  border: 2px solid var(--color-border);
+  border-top: 6px solid var(--color-accent-2);
+  box-shadow: var(--shadow-hard);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.game-card:nth-child(3n+2) .game-cover-wrapper { border-top-color: var(--color-accent); }
+.game-card:nth-child(3n) .game-cover-wrapper { border-top-color: var(--color-accent-3); }
+
+.game-card:hover .game-cover-wrapper,
+.game-card:focus-visible .game-cover-wrapper {
+  transform: translate(3px, 3px);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.game-card:focus-visible {
+  outline: 2px solid var(--color-accent-3);
+  outline-offset: 3px;
+  border-radius: 12px;
 }
 
 .game-cover-img {
@@ -224,9 +312,10 @@ GAME CARDS (PÁGINA INICIAL)
 
 .game-tag {
   font-size: 10px;
+  font-weight: 600;
   padding: 4px 8px;
-  background: #1e212a;
-  border-radius: 999px;
+  background: var(--color-bg-alt);
+  border-radius: 4px;
   color: var(--color-text-muted);
   border: 1px solid var(--color-border);
 }
@@ -236,13 +325,12 @@ GAME PAGE (DUAS COLUNAS COM IMAGEM FIXA)
 =================================== */
 .game-two-column-layout {
   display: grid;
-  grid-template-columns: 1fr 380px; /* Alargado para acomodar a imagem landscape */
+  grid-template-columns: 1fr 380px;
   gap: 40px;
   align-items: start;
   margin-top: 24px;
 }
 
-/* Coluna da direita: imagem fixa ao descer o scroll */
 .game-sidebar-right {
   position: sticky;
   top: 32px;
@@ -250,17 +338,18 @@ GAME PAGE (DUAS COLUNAS COM IMAGEM FIXA)
 
 .game-cover-lg {
   width: 100%;
-  aspect-ratio: 16 / 9; /* Proporção atualizada para o formato header/banner */
+  aspect-ratio: 16 / 9;
   border-radius: var(--radius);
   background: #000;
-  box-shadow: var(--shadow);
+  border: 2px solid var(--color-border);
+  box-shadow: var(--shadow-hard);
   overflow: hidden;
 }
 
 .game-cover-lg img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Alterado para preencher todo o quadro do banner sem bordas pretas */
+  object-fit: cover;
 }
 
 .game-meta {
@@ -269,28 +358,45 @@ GAME PAGE (DUAS COLUNAS COM IMAGEM FIXA)
   font-size: 14px;
 }
 
+#game-title {
+  font-size: 32px;
+}
+
 /* ===================================
-PROGRESSO E CHECKLIST
+PROGRESSO — MEDIDOR ESTILO OCARINA OF TIME
 =================================== */
 .progress-bar {
-  height: 10px;
-  background: #222;
+  height: 16px;
+  background: var(--color-bg-alt);
   border-radius: 999px;
   overflow: hidden;
-  margin-top: 12px;
-  border: 1px solid var(--color-border);
+  margin-top: 14px;
+  border: 2px solid var(--color-border);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.6), inset -1px -1px 0 var(--bevel-light);
+  padding: 2px;
 }
 
 .progress-bar-fill {
   height: 100%;
-  background: var(--color-accent);
-  transition: width 0.3s ease;
+  border-radius: 999px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--color-accent-3) 0px,
+      var(--color-accent-3) 10px,
+      #f0b400 10px,
+      #f0b400 12px
+    );
+  box-shadow: 0 0 8px 1px rgba(255, 210, 63, 0.55);
+  transition: width 0.35s ease;
 }
 
 #progress-text {
   margin-top: 8px;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 700;
+  font-family: "Baloo 2", sans-serif;
+  color: var(--color-accent-3);
 }
 
 .checklist-section {
@@ -298,11 +404,12 @@ PROGRESSO E CHECKLIST
 }
 
 .checklist-section h2 {
-  margin-top: 24px;
+  margin-top: 28px;
   margin-bottom: 16px;
   font-size: 18px;
-  color: var(--color-accent);
-  border-bottom: 1px solid var(--color-border);
+  font-weight: 600;
+  color: var(--color-accent-2);
+  border-bottom: 2px solid var(--color-border);
   padding-bottom: 8px;
 }
 
@@ -312,48 +419,98 @@ PROGRESSO E CHECKLIST
 
 .checklist li {
   margin-bottom: 12px;
-  background: var(--color-card);
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid var(--color-border);
+  padding: 14px;
 }
 
 .checklist label {
   display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.checklist-content {
+  display: flex;
   flex-direction: column;
   gap: 4px;
-  cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .checklist small {
   font-size: 13px;
+  font-weight: 400;
   color: var(--color-text-muted);
-  margin-left: 24px; /* Alinha com o texto, ignorando o checkbox */
 }
 
-.checklist input {
-  margin-right: 10px;
-  accent-color: var(--color-accent);
-  transform: scale(1.2);
+/* Checkbox customizado — botão físico */
+.checklist input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+  border-radius: 5px;
+  border: 2px solid var(--color-border);
+  background: var(--color-bg-alt);
+  box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.55), inset -1px -1px 0 var(--bevel-light);
+  cursor: pointer;
+  position: relative;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.checklist input[type="checkbox"]:checked {
+  background: var(--color-accent-2);
+  border-color: var(--color-accent-2);
+  box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+.checklist input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 3px;
+  width: 6px;
+  height: 11px;
+  border: solid #fff;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.checklist input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--color-accent-3);
+  outline-offset: 2px;
 }
 
 /* Botão de Reset */
 .reset-button {
   margin-top: 32px;
-  padding: 10px 20px;
-  border: 1px solid var(--color-danger);
-  border-radius: 4px;
-  background: transparent;
+  padding: 12px 22px;
+  border: 2px solid var(--color-danger);
+  border-radius: 8px;
+  background: var(--color-bg-alt);
   color: var(--color-danger);
   cursor: pointer;
-  font-weight: bold;
-  transition: all 0.2s;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  box-shadow: var(--shadow-hard-sm);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s, color 0.15s;
 }
 
 .reset-button:hover {
   background: var(--color-danger);
   color: #fff;
+}
+
+.reset-button:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.reset-button:focus-visible {
+  outline: 2px solid var(--color-accent-3);
+  outline-offset: 2px;
 }
 
 /* Responsividade para telas menores (celulares) */
@@ -364,8 +521,24 @@ PROGRESSO E CHECKLIST
   .game-sidebar-right {
     position: relative;
     top: 0;
-    order: -1; 
+    order: -1;
     max-width: 220px;
     margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-logo {
+    font-size: 15px;
+  }
+  .main-nav a {
+    margin-left: 12px;
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
   }
 }

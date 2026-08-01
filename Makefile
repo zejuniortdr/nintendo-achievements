@@ -7,7 +7,7 @@ HOST ?= 127.0.0.1
 URL  := http://$(HOST):$(PORT)
 
 # Detecta automaticamente python3 ou python
-PYTHON ?= $(shell which python3 شاعر 2>/dev/null || which python 2>/dev/null)
+PYTHON ?= $(shell which python3 2>/dev/null || which python 2>/dev/null)
 
 .PHONY: help
 help:

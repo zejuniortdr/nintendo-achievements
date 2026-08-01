@@ -12,8 +12,8 @@ async function loadMarkdown(path) {
 async function loadChecklistTasks(path) {
   const res = await fetch(path);
   const text = await res.text();
-  const { content } = parseFrontmatter(text);
-  return parseChecklistTasks(content);
+  const { meta, content } = parseFrontmatter(text);
+  return { meta, tasks: parseChecklistTasks(content) };
 }
 
 function parseFrontmatter(md) {
@@ -87,11 +87,13 @@ function renderChecklistHtml(tasks) {
     const mdDone = task.mdDone ? ' data-md-done="true"' : "";
 
     html += `
-      <li>
+      <li class="bevel-panel">
         <label>
           <input type="checkbox" class="checklist-item" data-task-id="${task.id}" data-legacy-task-id="${task.legacyId}"${checked}${mdDone}>
-          ${task.title}
-          ${task.desc ? `<small>${task.desc}</small>` : ""}
+          <span class="checklist-content">
+            ${task.title}
+            ${task.desc ? `<small>${task.desc}</small>` : ""}
+          </span>
         </label>
       </li>
     `;
