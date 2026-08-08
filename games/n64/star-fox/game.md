@@ -7,11 +7,11 @@ tags: Shooter, Rail Shooter
 
 ## Rota 1 (Fácil)
 
-- [ ] Concluir Corneria (Rota 1)  Derrote o chefe Attack Carrier no nível inicial.
-- [ ] Concluir Asteroid Belt  Navegue pelo cinturão de asteroides e derrote o Rock Crusher.
-- [ ] Concluir Space Armada  Destrua o cruzador de batalha Core Base da frota inimiga.
-- [ ] Concluir Meteor  Vença o chefe Destructor no estágio do meteoro.
-- [ ] Concluir Venom (Rota 1)  Derrote Phantron e a forma básica de Andross.
+- [x] Concluir Corneria (Rota 1)  Derrote o chefe Attack Carrier no nível inicial.
+- [x] Concluir Asteroid Belt  Navegue pelo cinturão de asteroides e derrote o Rock Crusher.
+- [x] Concluir Space Armada  Destrua o cruzador de batalha Core Base da frota inimiga.
+- [x] Concluir Meteor  Vença o chefe Destructor no estágio do meteoro.
+- [x] Concluir Venom (Rota 1)  Derrote Phantron e a forma básica de Andross.
 
 ## Rota 2 (Média)
 
@@ -32,5 +32,5 @@ tags: Shooter, Rail Shooter
 
 ## Fases Secretas
 
-- [ ] Desbloquear Black Hole  Na Rota 1 (Asteroid Belt), destrua 3 asteroides laranjas, passe por dentro das argolas e vença os inimigos no buraco negro.
+- [x] Desbloquear Black Hole  Na Rota 1 (Asteroid Belt), destrua 3 asteroides laranjas, passe por dentro das argolas e vença os inimigos no buraco negro.
 - [ ] Out of This Dimension  Na Rota 3 (Asteroid Field), atire no asteroide gigante à direita, passe pela ave espacial e enfrente a Máquina Caça-Níqueis (Slot Machine).
