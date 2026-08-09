@@ -7,7 +7,7 @@ tags: Aventura, Classico
 
 ## Pedras e Medalhões
 
-- [ ] Obter a Pedra Kokiri (Esmeralda)  Derrote Rainha Gohma no Grande Deku Tree.
+- [x] Obter a Pedra Kokiri (Esmeralda)  Derrote Rainha Gohma no Grande Deku Tree.
 - [ ] Obter o Rubi Goron  Complete a Dodongo's Cavern e derrote King Dodongo.
 - [ ] Obter a Safira Zora  Complete o Jabu-Jabu's Belly e derrote Barinade.
 - [ ] Obter o Medalhão da Floresta  Derrote Phantom Ganon no Forest Temple.
