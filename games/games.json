@@ -63,6 +63,15 @@
         "active": true
     },
     {
+        "id": "dk64",
+        "title": "Donkey Kong 64",
+        "platform": "N64",
+        "group": "n64",
+        "tags": ["Platform", "Adventure"],
+        "path": "n64/donkey-kong-64/game.md",
+        "active": true
+    },
+    {
         "id": "dkc-1",
         "title": "Donkey Kong Country",
         "platform": "SNES",
