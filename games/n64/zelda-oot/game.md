@@ -11,7 +11,7 @@ tags: Aventura, Classico
 - [x] Obter o Rubi Goron  Complete a Dodongo's Cavern e derrote King Dodongo.
 - [x] Obter a Safira Zora  Complete o Jabu-Jabu's Belly e derrote Barinade.
 - [x] Obter o Medalhão da Floresta  Derrote Phantom Ganon no Forest Temple.
-- [ ] Obter o Medalhão do Fogo  Derrote Volvagia no Fire Temple.
+- [x] Obter o Medalhão do Fogo  Derrote Volvagia no Fire Temple.
 - [ ] Obter o Medalhão da Água  Derrote Morpha no Water Temple.
 - [ ] Obter o Medalhão da Sombra  Derrote Bongo Bongo no Shadow Temple.
 - [ ] Obter o Medalhão do Espírito  Derrote Twinrova no Spirit Temple.
