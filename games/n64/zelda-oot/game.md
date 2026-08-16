@@ -12,7 +12,7 @@ tags: Aventura, Classico
 - [x] Obter a Safira Zora  Complete o Jabu-Jabu's Belly e derrote Barinade.
 - [x] Obter o Medalhão da Floresta  Derrote Phantom Ganon no Forest Temple.
 - [x] Obter o Medalhão do Fogo  Derrote Volvagia no Fire Temple.
-- [ ] Obter o Medalhão da Água  Derrote Morpha no Water Temple.
+- [x] Obter o Medalhão da Água  Derrote Morpha no Water Temple.
 - [ ] Obter o Medalhão da Sombra  Derrote Bongo Bongo no Shadow Temple.
 - [ ] Obter o Medalhão do Espírito  Derrote Twinrova no Spirit Temple.
 
@@ -32,7 +32,7 @@ tags: Aventura, Classico
 - [x] Aprender Song of Storms
 - [x] Aprender Minuet of Forest
 - [x] Aprender Bolero of Fire
-- [ ] Aprender Serenade of Water
+- [x] Aprender Serenade of Water
 - [ ] Aprender Nocturne of Shadow
 - [ ] Aprender Requiem of Spirit
 - [x] Aprender Prelude of Light
@@ -42,15 +42,15 @@ tags: Aventura, Classico
 - [x] Coletar 20 Gold Skulltulas  
 - [x] Coletar 30 Gold Skulltulas 
 - [x] Coletar 40 Gold Skulltulas
-- [ ] Coletar 50 Gold Skulltulas  Resgate metade das recompensas da família Aveil em Kakariko.
+- [x] Coletar 50 Gold Skulltulas  Resgate metade das recompensas da família Aveil em Kakariko.
 - [ ] Coletar 100 Gold Skulltulas  Complete a coleção total e receba a Golden Wallet.
 - [ ] Coletar todos os Pedaços de Coração  Junte as 36 metades espalhadas pelo mundo para 9 contêineres extras.
 
 ## Missão de Troca e Upgrades
 
-- [ ] Completar a Trading Sequence  Percorra do Weird Egg até a Claim Check.
-- [ ] Obter a Biggoron's Sword  Retire a espada forjada por Biggoron ao final da trading sequence.
-- [ ] Maximizar a Bomb Bag  Compre as duas expansões com o Bombchu Bowling / Bomber's Notebook.
+- [x] Completar a Trading Sequence  Percorra do Weird Egg até a Claim Check.
+- [x] Obter a Biggoron's Sword  Retire a espada forjada por Biggoron ao final da trading sequence.
+- [x] Maximizar a Bomb Bag  Compre as duas expansões com o Bombchu Bowling / Bomber's Notebook.
 - [x] Maximizar a Quiver  Expanda a aljava até 40 flechas com Anju.
 - [x] Maximizar a Carteira  Alcance a Giant's Wallet com 500 rupias de capacidade.
 - [x] Obtenha Din's Fire, 
