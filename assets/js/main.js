@@ -103,7 +103,10 @@ async function renderProfile() {
   } catch {}
 
   document.getElementById("profile-gamertag").textContent = profile.gamertag || "Player One";
-  document.getElementById("profile-avatar").src = profile.avatar || "assets/img/profile-avatar.svg";
+  const avatarImg = document.getElementById("profile-avatar");
+  revealOnLoad(avatarImg);
+  withImageExtensionFallback(avatarImg);
+  avatarImg.src = profile.avatar || "assets/img/profile-avatar.svg";
   document.getElementById("stat-games").textContent = games.length;
   document.getElementById("stat-achievements").textContent = achievements;
 }
@@ -113,6 +116,16 @@ const IMAGE_FALLBACK_EXTENSIONS = ["jpg", "jpeg", "png", "webp"];
 // ponytail: covers/headers referenced in game.md often drift from the real file
 // extension (png saved but .md still says .jpg). Instead of hand-editing every
 // game.md when that happens, retry the same path with sibling extensions.
+// ponytail: img starts opacity:0 in CSS (no broken-icon flash while src is
+// unset); reveal it once the browser actually has pixels to show.
+function revealOnLoad(img) {
+  if (img.complete && img.naturalWidth > 0) {
+    img.classList.add("is-loaded");
+    return;
+  }
+  img.addEventListener("load", () => img.classList.add("is-loaded"));
+}
+
 function withImageExtensionFallback(img) {
   img.addEventListener("error", () => {
     const tried = (img.dataset.extTried || "").split(",").filter(Boolean);
@@ -192,7 +205,10 @@ async function renderGameList() {
   }).join("");
 
   container.innerHTML = sections;
-  container.querySelectorAll("img.game-cover-img").forEach(withImageExtensionFallback);
+  container.querySelectorAll("img.game-cover-img").forEach(img => {
+    revealOnLoad(img);
+    withImageExtensionFallback(img);
+  });
 }
 
 function renderGameNotFound() {
@@ -221,8 +237,9 @@ async function loadGameById(id) {
   document.getElementById("game-title").textContent = meta.title;
   document.getElementById("game-meta").textContent = `${meta.platform} · ${meta.tags}`;
   const coverImg = document.getElementById("game-cover");
-  coverImg.src = basePath + (meta.header || meta.cover);
+  revealOnLoad(coverImg);
   withImageExtensionFallback(coverImg);
+  coverImg.src = basePath + (meta.header || meta.cover);
   document.getElementById("game-container").innerHTML = html;
 
   initChecklist(game.id, tasks);

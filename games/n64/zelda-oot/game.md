@@ -13,7 +13,7 @@ tags: Aventura, Classico
 - [x] Obter o Medalhão da Floresta  Derrote Phantom Ganon no Forest Temple.
 - [x] Obter o Medalhão do Fogo  Derrote Volvagia no Fire Temple.
 - [x] Obter o Medalhão da Água  Derrote Morpha no Water Temple.
-- [ ] Obter o Medalhão da Sombra  Derrote Bongo Bongo no Shadow Temple.
+- [x] Obter o Medalhão da Sombra  Derrote Bongo Bongo no Shadow Temple.
 - [ ] Obter o Medalhão do Espírito  Derrote Twinrova no Spirit Temple.
 
 ## Masmorras Secundárias e Final
@@ -33,7 +33,7 @@ tags: Aventura, Classico
 - [x] Aprender Minuet of Forest
 - [x] Aprender Bolero of Fire
 - [x] Aprender Serenade of Water
-- [ ] Aprender Nocturne of Shadow
+- [x] Aprender Nocturne of Shadow
 - [ ] Aprender Requiem of Spirit
 - [x] Aprender Prelude of Light
 
@@ -56,6 +56,24 @@ tags: Aventura, Classico
 - [x] Obtenha Din's Fire, 
 - [x] Obtenha Farore's Wind
 - [ ] Obtenha Nayru's Love
+
+## Itens e Upgrades Opcionais
+
+- [ ] Obter as 4 Garrafas  Compre/ganhe: Ruto's Letter (vira garrafa vazia), Princess Ruto, Great Fairy's Fountain, Fishing Pond (peixe 13kg+), Cow (Malon), Dampé (Bombflower/Poe), Man in Green (corrida noturna Hyrule Field).
+- [ ] Obter Flechas de Fogo  Great Fairy's Fountain a leste de Death Mountain Crater (adulto, precisa Bow + Song of Time).
+- [ ] Obter Flechas de Gelo  Recompensa do Horseback Archery (1500 pontos) em Gerudo's Fortress.
+- [ ] Obter Flechas de Luz  Derrote Ganondorf no topo do Ganon's Tower (obrigatório para final).
+- [ ] Obter o Hookshot  Bottom of the Well ou recompensa de Gold Skulltula (10 tokens) em Kakariko.
+- [ ] Obter o Longshot  Recompensa do Water Temple, prêmio de Gerudo Training Ground.
+- [ ] Obter o Boomerang  Recompensa do Deku Tree quando criança (chefe Gohma).
+- [ ] Obter o Hylian Shield  Compre nas lojas de Kakariko/Hyrule Castle Town.
+- [ ] Obter o Mirror Shield  Encontrado no Spirit Temple.
+- [ ] Maximizar a Magic Meter (Great Fairy)  Visite a Great Fairy's Fountain em Hyrule Castle (adulto) para o segundo nível de magia.
+- [ ] Obter o Stone of Agony  Recompensa de Gold Skulltula (10 tokens) em Kakariko (ativa o Rumble Pack).
+- [ ] Completar a Mask Trading Sequence  Do Skull Mask até a Mask of Truth, trocando com NPCs pela cidade.
+- [ ] Maximizar a Deku Stick Capacity  Compre upgrades na loja de Kokiri Forest.
+- [ ] Maximizar a Deku Nut Capacity  Compre upgrades na loja de Kokiri Forest.
+- [ ] Obter o Magic Bean Pack  Compre todos os 10 feijões do vendedor em Zora's River.
 
 ## Side Quests
 

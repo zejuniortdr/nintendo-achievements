@@ -308,6 +308,17 @@ GAME CARDS — CARTUCHO N64
   object-fit: contain;
 }
 
+.game-cover-img,
+.profile-avatar {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.game-cover-img.is-loaded,
+.profile-avatar.is-loaded {
+  opacity: 1;
+}
+
 .game-card-content {
   margin-top: 12px;
 }
