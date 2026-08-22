@@ -15,6 +15,7 @@ help:
 	@echo "  make serve     - Start local server"
 	@echo "  make open      - Open browser"
 	@echo "  make dev       - Serve + open browser"
+	@echo "  make test      - Run automated tests"
 	@echo "  make check     - Basic project checks"
 	@echo "  make clean     - Clean temp files"
 
@@ -37,6 +38,10 @@ open:
 .PHONY: dev
 dev:
 	@$(MAKE) -j2 serve open
+
+.PHONY: test
+test:
+	@node --test
 
 .PHONY: check
 check:

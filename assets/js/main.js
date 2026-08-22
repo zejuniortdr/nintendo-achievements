@@ -16,96 +16,26 @@ async function loadActiveGames() {
   return games.filter(game => game.active === true);
 }
 
-function progressKey(gameId) {
-  return `game-progress:${gameId}`;
-}
+// ponytail: shared by the profile dashboard and the badges module so both
+// read the same per-game numbers instead of re-parsing every game.md twice.
+async function collectGameStats() {
+  const games = await loadActiveGames();
 
-function loadProgress(gameId) {
-  try {
-    return JSON.parse(localStorage.getItem(progressKey(gameId)) || "{}");
-  } catch {
-    return {};
-  }
-}
-
-function saveProgress(gameId, progress) {
-  localStorage.setItem(progressKey(gameId), JSON.stringify(progress));
-}
-
-function migrateLegacyProgress(gameId) {
-  const prefix = `${gameId}-`;
-  const progress = loadProgress(gameId);
-  let changed = false;
-
-  Object.keys(localStorage).forEach(key => {
-    if (!key.startsWith(prefix)) return;
-
-    const taskId = key.slice(prefix.length);
-    if (localStorage.getItem(key) === "true") {
-      progress[taskId] = true;
-    }
-
-    localStorage.removeItem(key);
-    changed = true;
-  });
-
-  if (changed) saveProgress(gameId, progress);
-}
-
-function getStoredTaskState(progress, task) {
-  if (Object.prototype.hasOwnProperty.call(progress, task.id)) {
-    return progress[task.id];
-  }
-
-  if (task.legacyId && Object.prototype.hasOwnProperty.call(progress, task.legacyId)) {
-    return progress[task.legacyId];
-  }
-
-  return undefined;
-}
-
-function isTaskDone(task, progress) {
-  const stored = getStoredTaskState(progress, task);
-
-  if (stored === true) return true;
-  if (stored === false) return false;
-
-  return task.mdDone;
-}
-
-// ponytail: grade bands mirror PSNProfiles-style completion tiers (S/A-F)
-function progressGrade(percent) {
-  if (percent >= 100) return "s";
-  if (percent >= 90) return "a";
-  if (percent >= 80) return "b";
-  if (percent >= 70) return "c";
-  if (percent >= 60) return "d";
-  if (percent >= 50) return "e";
-  return "f";
-}
-
-function getProgressStats(gameId, tasks) {
-  migrateLegacyProgress(gameId);
-
-  const progress = loadProgress(gameId);
-  const total = tasks.length;
-  const done = tasks.filter(task => isTaskDone(task, progress)).length;
-  const percent = total > 0 ? Math.round((done / total) * 100) : 0;
-
-  return { done, total, percent };
+  return Promise.all(games.map(async game => {
+    const { tasks } = await loadChecklistTasks(gamesBasePath() + game.path);
+    return { game, ...getProgressStats(game.id, tasks) };
+  }));
 }
 
 async function renderProfile() {
   const section = document.getElementById("profile-section");
   if (!section) return;
 
-  const games = await loadActiveGames();
-  let achievements = 0;
-
-  for (const game of games) {
-    const { tasks } = await loadChecklistTasks(gamesBasePath() + game.path);
-    achievements += getProgressStats(game.id, tasks).done;
-  }
+  const gameStats = await collectGameStats();
+  const achievements = gameStats.reduce((sum, s) => sum + s.done, 0);
+  const totalTasks = gameStats.reduce((sum, s) => sum + s.total, 0);
+  const overallPercent = totalTasks > 0 ? Math.round((achievements / totalTasks) * 100) : 0;
+  const completedGames = gameStats.filter(s => s.percent === 100).length;
 
   let profile = {};
   try {
@@ -118,8 +48,16 @@ async function renderProfile() {
   revealOnLoad(avatarImg);
   withImageExtensionFallback(avatarImg);
   avatarImg.src = profile.avatar || "assets/img/profile-avatar.svg";
-  document.getElementById("stat-games").textContent = games.length;
+  document.getElementById("stat-games").textContent = gameStats.length;
   document.getElementById("stat-achievements").textContent = achievements;
+
+  const percentEl = document.getElementById("stat-percent");
+  if (percentEl) percentEl.textContent = overallPercent + "%";
+
+  const completedEl = document.getElementById("stat-completed");
+  if (completedEl) completedEl.textContent = completedGames;
+
+  renderBadges(gameStats);
 }
 
 const IMAGE_FALLBACK_EXTENSIONS = ["jpg", "jpeg", "png", "webp"];
@@ -159,11 +97,27 @@ const PLATFORM_SECTIONS = [
   { group: "snes", label: "Super Nintendo", coverClass: "cover-landscape" }
 ];
 
-async function renderGameList() {
-  const games = await loadActiveGames();
-  const container = document.getElementById("game-list");
+function renderSkeletonCards(count = 6) {
+  return `<div class="game-card-grid">${
+    Array.from({ length: count }, () => `
+      <div class="game-card game-card-skeleton">
+        <div class="game-cover-wrapper skeleton-block"></div>
+        <div class="game-card-content">
+          <div class="skeleton-block skeleton-line" style="width:70%"></div>
+          <div class="skeleton-block skeleton-line" style="width:40%"></div>
+        </div>
+      </div>
+    `).join("")
+  }</div>`;
+}
 
+async function renderGameList() {
+  const container = document.getElementById("game-list");
   if (!container) return;
+
+  container.innerHTML = renderSkeletonCards();
+
+  const games = await loadActiveGames();
 
   const prefix = gamesBasePath();
   const gamePage = prefix + "game.html";
@@ -177,8 +131,10 @@ async function renderGameList() {
       .map(t => `<span class="game-tag">${t}</span>`)
       .join("");
 
+    const tagList = (game.tags || []).map(t => t.toLowerCase()).join(",");
+
     const html = `
-      <a href="${gamePage}?id=${game.id}" class="game-card" data-game-name="${game.title.toLowerCase()}">
+      <a href="${gamePage}?id=${game.id}" class="game-card" data-game-name="${game.title.toLowerCase()}" data-group="${game.group || ""}" data-tags="${tagList}">
         <div class="game-cover-wrapper">
           <img src="${cover}" alt="${game.title}" class="game-cover-img">
         </div>
@@ -220,6 +176,29 @@ async function renderGameList() {
     revealOnLoad(img);
     withImageExtensionFallback(img);
   });
+
+  populateGameFilters(games);
+}
+
+function populateGameFilters(games) {
+  const platformSelect = document.getElementById("platform-filter");
+  if (platformSelect) {
+    const groups = [...new Set(games.map(g => g.group || "switch2"))];
+    const options = groups.map(group => {
+      const section = PLATFORM_SECTIONS.find(s => s.group === group);
+      const label = section ? section.label : group;
+      return `<option value="${group}">${label}</option>`;
+    });
+    platformSelect.innerHTML = `<option value="">All platforms</option>${options.join("")}`;
+  }
+
+  const tagContainer = document.getElementById("tag-filters");
+  if (tagContainer) {
+    const tags = [...new Set(games.flatMap(g => g.tags || []))].sort();
+    tagContainer.innerHTML = tags
+      .map(tag => `<button type="button" class="tag-filter-chip" data-tag="${tag.toLowerCase()}">${tag}</button>`)
+      .join("");
+  }
 }
 
 function renderGameNotFound() {
@@ -240,6 +219,15 @@ async function loadGameById(id) {
   if (!game) {
     renderGameNotFound();
     return;
+  }
+
+  const gameContainer = document.getElementById("game-container");
+  if (gameContainer) {
+    gameContainer.innerHTML = `
+      <div class="skeleton-block skeleton-line" style="width:60%"></div>
+      <div class="skeleton-block skeleton-line" style="width:90%"></div>
+      <div class="skeleton-block skeleton-line" style="width:80%"></div>
+    `;
   }
 
   const { meta, html, tasks } = await loadMarkdown(game.path);
@@ -332,13 +320,43 @@ function initChecklist(gameId, tasks) {
 
 function initGameSearch() {
   const input = document.getElementById("game-search");
-  if (!input) return;
+  const platformSelect = document.getElementById("platform-filter");
+  const tagContainer = document.getElementById("tag-filters");
+  if (!input && !platformSelect && !tagContainer) return;
 
-  input.addEventListener("input", () => {
-    const query = input.value.trim().toLowerCase();
+  const activeTags = new Set();
+
+  function applyFilters() {
+    const query = (input?.value || "").trim().toLowerCase();
+    const platform = platformSelect?.value || "";
+
     document.querySelectorAll("#game-list .game-card").forEach(card => {
-      card.style.display = card.dataset.gameName.includes(query) ? "" : "none";
+      const matchesQuery = !query || card.dataset.gameName.includes(query);
+      const matchesPlatform = !platform || card.dataset.group === platform;
+      const cardTags = (card.dataset.tags || "").split(",").filter(Boolean);
+      const matchesTags = activeTags.size === 0 || [...activeTags].every(tag => cardTags.includes(tag));
+
+      card.style.display = matchesQuery && matchesPlatform && matchesTags ? "" : "none";
     });
+  }
+
+  input?.addEventListener("input", applyFilters);
+  platformSelect?.addEventListener("change", applyFilters);
+
+  tagContainer?.addEventListener("click", event => {
+    const chip = event.target.closest(".tag-filter-chip");
+    if (!chip) return;
+
+    const tag = chip.dataset.tag;
+    if (activeTags.has(tag)) {
+      activeTags.delete(tag);
+      chip.classList.remove("is-active");
+    } else {
+      activeTags.add(tag);
+      chip.classList.add("is-active");
+    }
+
+    applyFilters();
   });
 }
 

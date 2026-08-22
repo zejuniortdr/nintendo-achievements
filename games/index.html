@@ -25,13 +25,18 @@
 
   <h1>Game Library</h1>
 
-  <input type="search" id="game-search" placeholder="Search...">
+  <div class="game-filters">
+    <input type="search" id="game-search" placeholder="Search...">
+    <select id="platform-filter"></select>
+  </div>
+  <div id="tag-filters" class="tag-filter-row"></div>
 
   <div id="game-list"></div>
 
 </main>
 
 <script src="../assets/js/markdown.js"></script>
+<script src="../assets/js/progress-core.js"></script>
 <script src="../assets/js/main.js"></script>
 
 </body>

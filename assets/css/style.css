@@ -210,6 +210,40 @@ PROFILE (PÁGINA INICIAL)
   }
 }
 
+.badge-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 24px 20px;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-alt);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-icon {
+  font-size: 14px;
+}
+
+.badge.is-locked {
+  opacity: 0.35;
+  filter: grayscale(1);
+}
+
+.badge.is-earned {
+  border-color: var(--color-accent-3);
+  color: var(--color-text);
+  box-shadow: 0 0 6px 1px rgba(255, 210, 63, 0.35);
+}
+
 /* ===================================
 GAME LIBRARY LIST (PÁGINA INTERNA)
 =================================== */
@@ -219,6 +253,12 @@ GAME LIBRARY LIST (PÁGINA INTERNA)
 
 .games-page #game-list {
   margin-top: 20px;
+}
+
+.game-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 #game-search {
@@ -234,9 +274,52 @@ GAME LIBRARY LIST (PÁGINA INTERNA)
   box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.4);
 }
 
-#game-search:focus-visible {
+#game-search:focus-visible,
+#platform-filter:focus-visible {
   outline: 2px solid var(--color-accent-2);
   outline-offset: 2px;
+}
+
+#platform-filter {
+  padding: 10px 14px;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 14px;
+  box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.4);
+}
+
+.tag-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.tag-filter-chip {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-text-muted);
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.tag-filter-chip:hover {
+  border-color: var(--color-accent-2);
+  color: var(--color-text);
+}
+
+.tag-filter-chip.is-active {
+  background: var(--color-accent-2);
+  border-color: var(--color-accent-2);
+  color: var(--color-text);
 }
 
 /* ===================================
@@ -581,5 +664,37 @@ PROGRESSO — MEDIDOR ESTILO OCARINA OF TIME
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
+  }
+}
+
+.skeleton-block {
+  background: linear-gradient(
+    90deg,
+    var(--color-bg-alt) 25%,
+    var(--color-panel-2) 50%,
+    var(--color-bg-alt) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+  border-radius: 6px;
+}
+
+.game-card-skeleton .game-cover-wrapper.skeleton-block {
+  border-radius: 12px 12px 4px 4px;
+}
+
+.skeleton-line {
+  height: 14px;
+  margin-top: 10px;
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-block {
+    animation: none;
   }
 }
