@@ -73,6 +73,17 @@ function isTaskDone(task, progress) {
   return task.mdDone;
 }
 
+// ponytail: grade bands mirror PSNProfiles-style completion tiers (S/A-F)
+function progressGrade(percent) {
+  if (percent >= 100) return "s";
+  if (percent >= 90) return "a";
+  if (percent >= 80) return "b";
+  if (percent >= 70) return "c";
+  if (percent >= 60) return "d";
+  if (percent >= 50) return "e";
+  return "f";
+}
+
 function getProgressStats(gameId, tasks) {
   migrateLegacyProgress(gameId);
 
@@ -179,7 +190,7 @@ async function renderGameList() {
           ${tags ? `<div class="game-tags">${tags}</div>` : ""}
 
           <div class="progress-bar">
-            <div class="progress-bar-fill" style="width:${percent}%"></div>
+            <div class="progress-bar-fill" data-grade="${progressGrade(percent)}" style="width:${percent}%"></div>
           </div>
 
           <p>${done}/${total} · ${percent}% complete</p>
@@ -298,7 +309,10 @@ function initChecklist(gameId, tasks) {
     const stats = getProgressStats(gameId, tasks);
 
     if (text) text.textContent = `${stats.done} / ${stats.total}`;
-    if (bar) bar.style.width = stats.percent + "%";
+    if (bar) {
+      bar.style.width = stats.percent + "%";
+      bar.dataset.grade = progressGrade(stats.percent);
+    }
   }
 
   update();

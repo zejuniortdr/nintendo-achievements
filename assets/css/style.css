@@ -413,14 +413,24 @@ PROGRESSO — MEDIDOR ESTILO OCARINA OF TIME
   background:
     repeating-linear-gradient(
       90deg,
-      var(--color-accent-3) 0px,
-      var(--color-accent-3) 10px,
-      #f0b400 10px,
-      #f0b400 12px
+      var(--grade-color, var(--color-accent-3)) 0px,
+      var(--grade-color, var(--color-accent-3)) 10px,
+      var(--grade-color-dark, #f0b400) 10px,
+      var(--grade-color-dark, #f0b400) 12px
     );
-  box-shadow: 0 0 8px 1px rgba(255, 210, 63, 0.55);
-  transition: width 0.35s ease;
+  box-shadow: 0 0 8px 1px var(--grade-glow, rgba(255, 210, 63, 0.55));
+  transition: width 0.35s ease, background 0.2s ease;
 }
+
+/* Grade bands mirroring PSNProfiles-style completion tiers.
+   Hues are spaced ~45deg apart so adjacent grades never look alike. */
+.progress-bar-fill[data-grade="s"] { --grade-color: #7C4DFF; --grade-color-dark: #5e33e0; --grade-glow: rgba(124, 77, 255, 0.55); }
+.progress-bar-fill[data-grade="a"] { --grade-color: #22C55E; --grade-color-dark: #189a47; --grade-glow: rgba(34, 197, 94, 0.55); }
+.progress-bar-fill[data-grade="b"] { --grade-color: #A8D400; --grade-color-dark: #86ab00; --grade-glow: rgba(168, 212, 0, 0.55); }
+.progress-bar-fill[data-grade="c"] { --grade-color: #FFC400; --grade-color-dark: #d9a600; --grade-glow: rgba(255, 196, 0, 0.55); }
+.progress-bar-fill[data-grade="d"] { --grade-color: #FF8A00; --grade-color-dark: #d97300; --grade-glow: rgba(255, 138, 0, 0.55); }
+.progress-bar-fill[data-grade="e"] { --grade-color: #FF4D4D; --grade-color-dark: #d93a3a; --grade-glow: rgba(255, 77, 77, 0.55); }
+.progress-bar-fill[data-grade="f"] { --grade-color: #B3122A; --grade-color-dark: #870d20; --grade-glow: rgba(179, 18, 42, 0.55); }
 
 #progress-text {
   margin-top: 8px;
