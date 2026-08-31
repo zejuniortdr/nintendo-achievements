@@ -30,43 +30,43 @@ tags: Tiro, Classico
 
 ## Dificuldade Secret Agent
 
-- [ ] Zerar a campanha completa na dificuldade Secret Agent
+- [x] Zerar a campanha completa na dificuldade Secret Agent
 
 ## Dificuldade 00 Agent
 
-- [ ] Zerar a campanha completa na dificuldade 00 Agent  Libera objetivos extras em cada fase.
+- [x] Zerar a campanha completa na dificuldade 00 Agent  Libera objetivos extras em cada fase.
 
 ## Cheats por Tempo
 
 - [x] Dam — Paintball Mode (Secret Agent, abaixo de 2:40)
 - [ ] Facility — Invincibility (00 Agent, abaixo de 2:05)
 - [x] Runway — DK Mode (Agent, abaixo de 5:00)
-- [ ] Surface 1 — 2x Grenade Launcher (Secret Agent, abaixo de 3:30)
-- [ ] Bunker 1 — 2x Rocket Launcher (00 Agent, abaixo de 4:00)
+- [x] Surface 1 — 2x Grenade Launcher (Secret Agent, abaixo de 3:30)
+- [x] Bunker 1 — 2x Rocket Launcher (00 Agent, abaixo de 4:00)
 - [x] Silo — Turbo Mode (Agent, abaixo de 3:00)
 - [x] Frigate — No Radar / Multiplayer (Secret Agent, abaixo de 4:30)
 - [x] Surface 2 — Tiny Bond (00 Agent, abaixo de 4:15)
 - [x] Bunker 2 — 2x Throwing Knives (Agent, abaixo de 1:30)
-- [ ] Statue Park — Fast Animation (Secret Agent, abaixo de 3:15)
+- [x] Statue Park — Fast Animation (Secret Agent, abaixo de 3:15)
 - [ ] Archives — Invisibility (00 Agent, abaixo de 1:20)
 - [x] Streets — Enemy Rockets (Agent, abaixo de 1:45)
-- [ ] Depot — Slow Animation (Secret Agent, abaixo de 1:30)
-- [ ] Train — Silver PP7 (00 Agent, abaixo de 5:25)
+- [x] Depot — Slow Animation (Secret Agent, abaixo de 1:30)
+- [x] Train — Silver PP7 (00 Agent, abaixo de 5:25)
 - [x] Jungle — 2x Hunting Knives (Agent, abaixo de 3:45)
-- [ ] Control — Infinite Ammo (Secret Agent, abaixo de 10:00)
-- [ ] Caverns — 2x RC-P90s (00 Agent, abaixo de 9:30)
+- [x] Control — Infinite Ammo (Secret Agent, abaixo de 10:00)
+- [x] Caverns — 2x RC-P90s (00 Agent, abaixo de 9:30)
 - [x] Cradle — Gold PP7 (Agent, abaixo de 2:15)
-- [ ] Aztec — 2x Lasers (Secret Agent, abaixo de 9:00)
-- [ ] Egyptian — All Guns (00 Agent, abaixo de 6:00)
+- [x] Aztec — 2x Lasers (Secret Agent, abaixo de 9:00)
+- [x] Egyptian — All Guns (00 Agent, abaixo de 6:00)
 
 ## Cheats por Conclusão (sem tempo)
 
 - [x] Cradle — Cougar Magnum (completar em Agent)
 - [x] Cradle — Personagens extras no Multiplayer (completar em qualquer dificuldade)
 - [x] Aztec — Laser (completar em Secret Agent)
-- [ ] Egyptian — Golden Gun (completar em 00 Agent)
+- [x] Egyptian — Golden Gun (completar em 00 Agent)
 
 ## Extras
 
-- [ ] Desbloquear todos os personagens do Multiplayer  Cumpra os requisitos de tempo/dificuldade de cada fase que libera personagem.
-- [ ] Desbloquear o modo 007  Complete todas as fases (incluindo Aztec e Egyptian) na dificuldade 00 Agent.
+- [x] Desbloquear todos os personagens do Multiplayer 
+- [x] Desbloquear o modo 007  Complete todas as fases (incluindo Aztec e Egyptian) na dificuldade 00 Agent.
