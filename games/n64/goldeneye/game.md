@@ -44,8 +44,8 @@ tags: Tiro, Classico
 - [ ] Surface 1 — 2x Grenade Launcher (Secret Agent, abaixo de 3:30)
 - [ ] Bunker 1 — 2x Rocket Launcher (00 Agent, abaixo de 4:00)
 - [x] Silo — Turbo Mode (Agent, abaixo de 3:00)
-- [ ] Frigate — No Radar / Multiplayer (Secret Agent, abaixo de 4:30)
-- [ ] Surface 2 — Tiny Bond (00 Agent, abaixo de 4:15)
+- [x] Frigate — No Radar / Multiplayer (Secret Agent, abaixo de 4:30)
+- [x] Surface 2 — Tiny Bond (00 Agent, abaixo de 4:15)
 - [x] Bunker 2 — 2x Throwing Knives (Agent, abaixo de 1:30)
 - [ ] Statue Park — Fast Animation (Secret Agent, abaixo de 3:15)
 - [ ] Archives — Invisibility (00 Agent, abaixo de 1:20)
@@ -62,15 +62,11 @@ tags: Tiro, Classico
 ## Cheats por Conclusão (sem tempo)
 
 - [x] Cradle — Cougar Magnum (completar em Agent)
-- [ ] Cradle — Personagens extras no Multiplayer (completar em qualquer dificuldade)
-- [ ] Aztec — Laser (completar em Secret Agent)
+- [x] Cradle — Personagens extras no Multiplayer (completar em qualquer dificuldade)
+- [x] Aztec — Laser (completar em Secret Agent)
 - [ ] Egyptian — Golden Gun (completar em 00 Agent)
 
 ## Extras
 
 - [ ] Desbloquear todos os personagens do Multiplayer  Cumpra os requisitos de tempo/dificuldade de cada fase que libera personagem.
 - [ ] Desbloquear o modo 007  Complete todas as fases (incluindo Aztec e Egyptian) na dificuldade 00 Agent.
-
-## Multiplayer
-
-- [ ] Vencer uma partida de Multiplayer em cada uma das arenas clássicas (Complex, Facility, Temple, Stack, Caves, Basement, Bunker, Archives, Egyptian, Library, Runway, Statue Park, Cradle, Depot, Frigate)
