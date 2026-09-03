@@ -7,49 +7,49 @@ tags: Plataforma, Classico
 
 ## Lake Orangatanga
 
-- [ ] Completar Tidal Trouble
-- [ ] Completar Doorstop Dash
-- [ ] Completar Tidal Trouble Bonus  Ative a fase bônus escondida.
-- [ ] Completar Ripsaw Rage
-- [ ] Completar Riverside Race
-- [ ] Completar Squeals on Wheels
-- [ ] Vencer o chefe Belcha
+- [x] Completar Tidal Trouble
+- [x] Completar Doorstop Dash
+- [x] Completar Tidal Trouble Bonus  Ative a fase bônus escondida.
+- [x] Completar Ripsaw Rage
+- [x] Completar Riverside Race
+- [x] Completar Squeals on Wheels
+- [x] Vencer o chefe Belcha
 
 ## Kremwood Forest e Cotton Top Cove
 
-- [ ] Completar Barrel Shield Bust-Up
-- [ ] Completar Kremwood Krossing
-- [ ] Completar Rocket Rush
-- [ ] Completar Poutre Fever
-- [ ] Completar Riggin' Rip-Off
-- [ ] Completar Sunken Spruce
-- [ ] Completar Springin' Spores
-- [ ] Completar Squawks's Shaft
-- [ ] Vencer o chefe Squirt
+- [x] Completar Barrel Shield Bust-Up
+- [x] Completar Kremwood Krossing
+- [x] Completar Rocket Rush
+- [x] Completar Poutre Fever
+- [x] Completar Riggin' Rip-Off
+- [x] Completar Sunken Spruce
+- [x] Completar Springin' Spores
+- [x] Completar Squawks's Shaft
+- [x] Vencer o chefe Squirt
 
 ## Mekanos e K3 (Razor Ridge)
 
-- [ ] Completar Rocket Barrel Ride
-- [ ] Completar Rocket Barrel Ride 2
-- [ ] Completar Kong-Fused Cliffs
-- [ ] Completar Rickety Race
-- [ ] Completar Ropey Rumpus
-- [ ] Completar Rainy Race N.M.
-- [ ] Completar Slime Climb
-- [ ] Completar Buzzer Barrage
-- [ ] Vencer o chefe KAOS
+- [x] Completar Rocket Barrel Ride
+- [x] Completar Rocket Barrel Ride 2
+- [x] Completar Kong-Fused Cliffs
+- [x] Completar Rickety Race
+- [x] Completar Ropey Rumpus
+- [x] Completar Rainy Race N.M.
+- [x] Completar Slime Climb
+- [x] Completar Buzzer Barrage
+- [x] Vencer o chefe KAOS
 
 ## Razor Ridge, Kremwood e Chefe Final
 
-- [ ] Completar Bleak's House
-- [ ] Completar Fish Food Frenzy
-- [ ] Completar Lightning Lookout
-- [ ] Completar Poison Pond
-- [ ] Completar Cranky's Boss Rush
-- [ ] Derrotar Baron K. Roolenstein na Krematoa
+- [x] Completar Bleak's House
+- [x] Completar Fish Food Frenzy
+- [x] Completar Lightning Lookout
+- [x] Completar Poison Pond
+- [x] Completar Cranky's Boss Rush
+- [x] Derrotar Baron K. Roolenstein na Krematoa
 
 ## 103%
 
-- [ ] Coletar todos os Bear Coins e Banana Birds
-- [ ] Coletar os DK Coins de todos os níveis
-- [ ] Alcançar 103% de conclusão do jogo
+- [x] Coletar todos os Bear Coins e Banana Birds
+- [x] Coletar os DK Coins de todos os níveis
+- [x] Alcançar 103% de conclusão do jogo

@@ -49,6 +49,6 @@ tags: Plataforma, Classico
 
 ## 102%
 
-- [ ] Coletar todos os DK Coins de todos os níveis
-- [ ] Coletar todos os Kremkoins e desbloquear o Lost World
-- [ ] Alcançar 102% de conclusão do jogo
+- [x] Coletar todos os DK Coins de todos os níveis
+- [x] Coletar todos os Kremkoins e desbloquear o Lost World
+- [x] Alcançar 102% de conclusão do jogo
