@@ -53,3 +53,7 @@ tags: Plataforma, Classico
 - [x] Coletar todos os Bear Coins e Banana Birds
 - [x] Coletar os DK Coins de todos os níveis
 - [x] Alcançar 103% de conclusão do jogo
+
+## 105%
+
+- [x] Alcançar 105% de conclusão do jogo
