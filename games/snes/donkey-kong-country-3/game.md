@@ -56,4 +56,4 @@ tags: Plataforma, Classico
 
 ## 105%
 
-- [x] Alcançar 105% de conclusão do jogo
+- [x] Alcançar 105% de conclusão do jogo (Modo difícil)
