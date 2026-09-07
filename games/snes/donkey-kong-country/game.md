@@ -50,5 +50,5 @@ tags: Plataforma, Classico
 
 ## 101%
 
-- [ ] Coletar todos os Bonus Barrels  Complete os desafios bônus de todas as fases.
-- [ ] Alcançar 101% de conclusão do jogo
+- [x] Coletar todos os Bonus Barrels  Complete os desafios bônus de todas as fases.
+- [x] Alcançar 101% de conclusão do jogo
