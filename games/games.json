@@ -97,5 +97,14 @@
         "tags": ["Platform", "Classic"],
         "path": "snes/donkey-kong-country-3/game.md",
         "active": true
+    },
+    {
+        "id": "zelda-alttp",
+        "title": "The Legend of Zelda: A Link to the Past",
+        "platform": "SNES",
+        "group": "snes",
+        "tags": ["Adventure", "Classic"],
+        "path": "snes/zelda-link-to-past/game.md",
+        "active": true
     }
 ]
