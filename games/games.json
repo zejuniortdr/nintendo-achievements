@@ -106,5 +106,14 @@
         "tags": ["Adventure", "Classic"],
         "path": "snes/zelda-link-to-past/game.md",
         "active": true
+    },
+    {
+        "id": "smw",
+        "title": "Super Mario World",
+        "platform": "SNES",
+        "group": "snes",
+        "tags": ["Platform", "Classic"],
+        "path": "snes/super-mario-world/game.md",
+        "active": true
     }
 ]
