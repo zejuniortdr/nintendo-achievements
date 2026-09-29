@@ -12,47 +12,47 @@ tags: Plataforma, Classico
 
 ## Donut Plains (Mundo 2)
 
-- [ ] Completar Donut Plains 1, 2, 3, 4
-- [ ] Completar Donut Secret 1, 2, 3
-- [ ] Completar Donut Ghost House
-- [ ] Encontrar o caminho secreto para a Star Road de Donut Plains
-- [ ] Derrotar Morton Koopa Jr. no Castelo de Donut Plains
+- [x] Completar Donut Plains 1, 2, 3, 4
+- [x] Completar Donut Secret 1, 2, 3
+- [x] Completar Donut Ghost House
+- [x] Encontrar o caminho secreto para a Star Road de Donut Plains
+- [x] Derrotar Morton Koopa Jr. no Castelo de Donut Plains
 
 ## Vanilla Dome (Mundo 3)
 
-- [ ] Completar Vanilla Dome 1, 2, 3, 4
-- [ ] Completar Vanilla Secret 1, 2, 3
-- [ ] Completar Vanilla Ghost House
-- [ ] Derrotar Lemmy Koopa no Castelo de Vanilla Dome
+- [x] Completar Vanilla Dome 1, 2, 3, 4
+- [x] Completar Vanilla Secret 1, 2, 3
+- [x] Completar Vanilla Ghost House
+- [x] Derrotar Lemmy Koopa no Castelo de Vanilla Dome
 
 ## Forest of Illusion (Mundo 4)
 
-- [ ] Completar Forest of Illusion 1, 2, 3, 4
-- [ ] Completar Forest Ghost House
-- [ ] Derrotar Ludwig von Koopa no Castelo de Forest of Illusion
+- [x] Completar Forest of Illusion 1, 2, 3, 4
+- [x] Completar Forest Ghost House
+- [x] Derrotar Ludwig von Koopa no Castelo de Forest of Illusion
 
 ## Chocolate Island (Mundo 5)
 
-- [ ] Completar Chocolate Island 1, 2, 3, 4, 5
-- [ ] Derrotar Roy Koopa no Castelo de Chocolate Island
+- [x] Completar Chocolate Island 1, 2, 3, 4, 5
+- [x] Derrotar Roy Koopa no Castelo de Chocolate Island
 
 ## Valley of Bowser (Mundo 6)
 
-- [ ] Completar Valley of Bowser 1, 2, 3, 4
-- [ ] Derrotar Wendy O. Koopa no Castelo de Valley of Bowser
-- [ ] Derrotar Larry Koopa na Front Door / Back Door de Bowser's Castle
+- [x] Completar Valley of Bowser 1, 2, 3, 4
+- [x] Derrotar Wendy O. Koopa no Castelo de Valley of Bowser
+- [x] Derrotar Larry Koopa na Front Door / Back Door de Bowser's Castle
 
 ## Star Road e Mundo Especial
 
-- [ ] Desbloquear e completar todos os 7 estágios da Star Road
-- [ ] Desbloquear o Special World (Mundo Especial)
-- [ ] Completar os 8 estágios do Special World (Gnarly, Tubular, Way Cool, Awesome, Groovy, Mondo, Outrageous, Funky)
-- [ ] Trocar a paleta de cores do mapa completando o Special World
+- [x] Desbloquear e completar todos os 7 estágios da Star Road
+- [x] Desbloquear o Special World (Mundo Especial)
+- [x] Completar os 8 estágios do Special World (Gnarly, Tubular, Way Cool, Awesome, Groovy, Mondo, Outrageous, Funky)
+- [x] Trocar a paleta de cores do mapa completando o Special World
 
 ## Bowser e Final
 
-- [ ] Derrotar Bowser no Bowser's Castle e resgatar a Princesa Peach
-- [ ] Ver o final do jogo com Yoshi comendo o bolo
+- [x] Derrotar Bowser no Bowser's Castle e resgatar a Princesa Peach
+- [x] Ver o final do jogo com Yoshi comendo o bolo
 
 ## Yoshi e Power-Ups
 
@@ -66,7 +66,5 @@ tags: Plataforma, Classico
 
 ## 100% de Conclusão
 
-- [ ] Completar todos os 96 estágios do jogo
+- [x] Completar todos os 96 estágios do jogo
 - [ ] Encontrar todas as saídas secretas (Secret Exits) de cada fase
-- [ ] Coletar Dragon Coins em todas as fases (5 por fase)
-- [ ] Completar o jogo com o placar máximo de vidas/pontuação

@@ -24,41 +24,41 @@ tags: Aventura, Classico
 
 ## As Sete Cristais (Dungeons do Mundo das Trevas)
 
-- [ ] Completar o Palace of Darkness e derrotar Helmasaur King (1ª cristal)
-- [ ] Completar o Swamp Palace e derrotar Arrghus (2ª cristal)
-- [ ] Completar o Skull Woods e derrotar Mothula (3ª cristal)
-- [ ] Completar a Thieves' Town e derrotar Blind the Thief (4ª cristal)
-- [ ] Completar a Ice Palace e derrotar Kholdstare (5ª cristal)
-- [ ] Completar a Misery Mire e derrotar Vitreous (6ª cristal)
-- [ ] Completar a Turtle Rock e derrotar Trinexx (7ª cristal)
+- [x] Completar o Palace of Darkness e derrotar Helmasaur King (1ª cristal)
+- [x] Completar o Swamp Palace e derrotar Arrghus (2ª cristal)
+- [x] Completar o Skull Woods e derrotar Mothula (3ª cristal)
+- [x] Completar a Thieves' Town e derrotar Blind the Thief (4ª cristal)
+- [x] Completar a Ice Palace e derrotar Kholdstare (5ª cristal)
+- [x] Completar a Misery Mire e derrotar Vitreous (6ª cristal)
+- [x] Completar a Turtle Rock e derrotar Trinexx (7ª cristal)
 
 ## Ganon's Tower e Final
 
-- [ ] Abrir a Ganon's Tower com as sete cristais
-- [ ] Derrotar os três Golens Armados (Armos, Lanmolas, Moldorm) na Ganon's Tower
-- [ ] Derrotar Agahnim na Ganon's Tower
-- [ ] Derrotar Ganon e completar o jogo
+- [x] Abrir a Ganon's Tower com as sete cristais
+- [x] Derrotar os três Golens Armados (Armos, Lanmolas, Moldorm) na Ganon's Tower
+- [x] Derrotar Agahnim na Ganon's Tower
+- [x] Derrotar Ganon e completar o jogo
 
 ## Itens e Equipamentos Principais
 
 - [x] Obter o Boomerang
 - [x] Obter o Arco e Flecha (Bow)
-- [ ] Obter o Gancho (Hookshot)
+- [x] Obter o Gancho (Hookshot)
 - [x] Obter a Lamparina (Lamp)
-- [ ] Obter o Martelo (Magic Hammer)
+- [x] Obter o Martelo (Magic Hammer)
 - [x] Obter as Botas de Corrida (Pegasus Boots)
-- [ ] Obter as Luvas de Força (Power Glove e Titan's Mitt)
-- [ ] Obter a Flauta Mágica (Ocarina/Flute)
-- [ ] Obter o Manto Mágico (Magic Cape)
-- [ ] Obter as Varinhas de Gelo/Fogo (Ice Rod e Fire Rod)
-- [ ] Obter o Cajado de Vento (Cane of Somaria)
-- [ ] Obter o Cajado de Byrna (Cane of Byrna)
-- [ ] Obter as Nadadeiras de Zora (Zora's Flippers)
+- [x] Obter as Luvas de Força (Power Glove e Titan's Mitt)
+- [x] Obter a Flauta Mágica (Ocarina/Flute)
+- [x] Obter o Manto Mágico (Magic Cape)
+- [x] Obter as Varinhas de Gelo/Fogo (Ice Rod e Fire Rod)
+- [x] Obter o Cajado de Vento (Cane of Somaria)
+- [x] Obter o Cajado de Byrna (Cane of Byrna)
+- [x] Obter as Nadadeiras de Zora (Zora's Flippers)
 - [x] Obter o Espelho Mágico (Magic Mirror)
 - [x] Obter a Espada Master Sword
-- [ ] Obter a Espada Tempera (Tempered Sword)
-- [ ] Obter a Espada Dourada (Golden Sword)
-- [ ] Obter o Escudo Espelhado (Mirror Shield)
+- [x] Obter a Espada Tempera (Tempered Sword)
+- [x] Obter a Espada Dourada (Golden Sword)
+- [x] Obter o Escudo Espelhado (Mirror Shield)
 
 ## 100% de Conclusão
 
