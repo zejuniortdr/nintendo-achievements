@@ -8,19 +8,19 @@ header: imgs/header.jpg
 
 ## Rota 1 (Fácil)
 
-- [ ] Concluir Corneria (Rota 1)  Derrote o chefe Attack Carrier no nível inicial.
-- [ ] Concluir Asteroid Belt  Navegue pelo cinturão de asteroides e derrote o Rock Crusher.
-- [ ] Concluir Space Armada  Destrua o cruzador de batalha Core Base da frota inimiga.
-- [ ] Concluir Meteor  Vença o chefe Destructor no estágio do meteoro.
-- [ ] Concluir Venom (Rota 1)  Derrote Phantron e a forma básica de Andross.
+- [x] Concluir Corneria (Rota 1)  Derrote o chefe Attack Carrier no nível inicial.
+- [x] Concluir Asteroid Belt  Navegue pelo cinturão de asteroides e derrote o Rock Crusher.
+- [x] Concluir Space Armada  Destrua o cruzador de batalha Core Base da frota inimiga.
+- [x] Concluir Meteor  Vença o chefe Destructor no estágio do meteoro.
+- [x] Concluir Venom (Rota 1)  Derrote Phantron e a forma básica de Andross.
 
 ## Rota 2 (Média)
 
-- [ ] Concluir Corneria (Rota 2)  Pegue o caminho do meio e derrote o Attack Carrier modificado.
-- [ ] Concluir Sector X  Destrua a versão aprimorada do Rock Crusher.
-- [ ] Concluir Titania  Sobreviva ao planeta desértico e derrote o Professor Hangar.
-- [ ] Concluir Sector Y  Batalhe contra a frota de Andross e destrua o Plasma Hydra.
-- [ ] Concluir Venom (Rota 2)  Derrote o Metal Smasher e a versão intermediária de Andross.
+- [x] Concluir Corneria (Rota 2)  Pegue o caminho do meio e derrote o Attack Carrier modificado.
+- [x] Concluir Sector X  Destrua a versão aprimorada do Rock Crusher.
+- [x] Concluir Titania  Sobreviva ao planeta desértico e derrote o Professor Hangar.
+- [x] Concluir Sector Y  Batalhe contra a frota de Andross e destrua o Plasma Hydra.
+- [x] Concluir Venom (Rota 2)  Derrote o Metal Smasher e a versão intermediária de Andross.
 
 
 
@@ -37,5 +37,5 @@ header: imgs/header.jpg
 
 ## Fases Secretas
 
-- [ ] Desbloquear Black Hole  Na Rota 1 (Asteroid Belt), destrua 3 asteroides laranjas, passe por dentro das argolas e vença os inimigos no buraco negro.
+- [x] Desbloquear Black Hole  Na Rota 1 (Asteroid Belt), destrua 3 asteroides laranjas, passe por dentro das argolas e vença os inimigos no buraco negro.
 - [ ] Out of This Dimension  Na Rota 3 (Asteroid Field), atire no asteroide gigante à direita, passe pela ave espacial e enfrente a Máquina Caça-Níqueis (Slot Machine).
